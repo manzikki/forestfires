@@ -42,7 +42,7 @@ frp <- raster::rotate(raster::brick(frpfile))
 # Load global PM2.5 layer and rotate longitude to be in the range [-180, +180]
 pm2p5 <- raster::rotate(raster::brick(pm25file))
 
-# Crop frp and pm2p5 over Portugal
+# Crop frp and pm2p5 over Thailand
 frp_thabbox <- raster::crop(frp, thaibox)
 pm2p5_thabbox <- raster::crop(pm2p5, thaibox)
 
