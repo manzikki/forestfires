@@ -1,4 +1,5 @@
-# Call by: Rscript work.r
+# Creates graphs about forest fires in SEA
+# Call by: Rscript work.r frpfile.nc pm25file.nc
 # Based on an example by Claudia Vitolo
 # Marko Niinimaki, niinimakim@webster.ac.th 2020
 ### PACKAGES ###
@@ -31,6 +32,11 @@ library("caliver")
 
 # Get Thai administrative boundary
 tha <- raster::getData(name = "GADM", country = "THA", level = 0)
+lao <- raster::getData(name = "GADM", country = "LAO", level = 0)
+khm <- raster::getData(name = "GADM", country = "KHM", level = 0)
+vnm <- raster::getData(name = "GADM", country = "VNM", level = 0)
+mmr <- raster::getData(name = "GADM", country = "MMR", level = 0)
+
 
 # or bounding box (http://boundingbox.klokantech.com/)
 thaibox <- as(raster::extent(89.25,110.38,1.89,28.84), "SpatialPolygons")
@@ -55,6 +61,11 @@ jpeg("frp.jpg")
 plot(frp_thabbox, main = "FRP in W/m2", 
      xlab = "Lon", ylab = "Lat")
 plot(tha, add= TRUE)
+plot(lao, add=TRUE)
+plot(khm, add=TRUE)
+plot(vnm, add=TRUE)
+plot(mmr, add=TRUE)
+
 dev.off()
 
 # Plot the PM2.5
@@ -62,4 +73,10 @@ jpeg("pm25.jpg")
 plot(pm2p5_thabbox, main = "PM2.5", 
      xlab = "Lon", ylab = "Lat")
 plot(tha, add = TRUE)
+plot(lao, add = TRUE)
+plot(khm, add=TRUE)
+plot(vnm, add=TRUE)
+plot(mmr, add=TRUE)
+
+
 dev.off()
