@@ -1,6 +1,10 @@
+#Download fire radiative power for one day. Either that day is given as parameter or it's today - 2.
+#The optional paramter's format is 2020-01-30
+#The output file is datefrp.nc, for example 2020-01-30frp.nc
+#Marko Niinimaki, niinimakim@webster.ac.th 2020
 #!/usr/bin/env python
 import datetime
-
+import sys
 from ecmwfapi import ECMWFDataServer
 
 now = datetime.datetime.now()
@@ -21,7 +25,10 @@ if month < 10:
 if day < 10:
     daystr = "0" + str(day)
 
-dstr = str(year)+"-"+monthstr+"-"+daystr
+if len(sys.argv) == 2:
+    dstr = sys.argv[1]
+else:
+    dstr = str(year)+"-"+monthstr+"-"+daystr
 
 print dstr
 
