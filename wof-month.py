@@ -18,6 +18,10 @@ if lastmonth == 0:
 mdate = datetime(year=year, month=lastmonth, day=1).date()
 lastday = last_day_of_month(mdate)
 
+monthstr = str(lastmonth)
+if lastmonth < 10:
+    monthstr = "0"+monthstr
+
 dstr = str(year)+"-"+monthstr+"-01/to/"+str(lastday)
 
 print(dstr)
@@ -37,5 +41,5 @@ server.retrieve({
     "stream": "gfas",
     "time": "00:00:00",
     "type": "ga",
-    "target": "output",
+    "target": str(year)+"-"+monthstr+"-01wof.nc",
 })
