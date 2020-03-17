@@ -38,6 +38,7 @@ server.retrieve({
     "levtype": "sfc",
     "param": "92.210",
     "step": "0-24",
+    "format"    : "netcdf",
     "stream": "gfas",
     "time": "00:00:00",
     "type": "ga",
