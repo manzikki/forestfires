@@ -1,6 +1,10 @@
+#Gets one day PM 2.5 figure. The day can be given as a parameter. If no parameter, it's the day before yesterday
+#Marko Niinimaki niinimakim@webster.ac.th 2020
+#The optional paramter's format is 2020-01-30
+#The output file is datepm25.nc, for example 2020-01-30pm25.nc
 #!/usr/bin/env python
 import datetime
-
+import sys
 from ecmwfapi import ECMWFDataServer
 
 now = datetime.datetime.now()
@@ -21,7 +25,13 @@ if month < 10:
 if day < 10:
     daystr = "0" + str(day)
 
-dstr = str(year)+"-"+monthstr+"-"+daystr
+if day < 10:
+    daystr = "0" + str(day)
+
+if len(sys.argv) == 2:
+    dstr = sys.argv[1]
+else:
+    dstr = str(year)+"-"+monthstr+"-"+daystr\
 
 print dstr
 
