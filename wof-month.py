@@ -1,9 +1,11 @@
 #This script downloads last month's "wildfire overall flux of burned carbon"
+#Optional parameters: month year <- will download this
 #Marko Niinimaki 2020
 #!/usr/bin/env python
 from datetime import datetime
 from calendar import monthrange
 from ecmwfapi import ECMWFDataServer
+import sys
 
 def last_day_of_month(date_value):
     return date_value.replace(day = monthrange(date_value.year, date_value.month)[1])
@@ -14,6 +16,11 @@ year = datetime.now().year
 if lastmonth == 0:
     lastmonth = 12
     year = year - 1
+
+
+if len(sys.argv) == 3:
+    lastmonth = int(sys.argv[1])
+    year = int(sys.argv[2])
 
 mdate = datetime(year=year, month=lastmonth, day=1).date()
 lastday = last_day_of_month(mdate)
