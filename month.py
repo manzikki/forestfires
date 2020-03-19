@@ -1,4 +1,5 @@
-#This script downloads last month's "wildfire overall flux of burned carbon"
+#This script downloads last month's forest fire variables' data.
+#Output: month.nc like 2020-01.nc
 #Optional parameters: month year <- will download this
 #Marko Niinimaki 2020
 #!/usr/bin/env python
@@ -50,5 +51,5 @@ server.retrieve({
     "stream": "gfas",
     "time": "00:00:00",
     "type": "ga",
-    "target": str(year)+"-"+monthstr+"-01wof.nc",
+    "target": str(year)+"-"+monthstr+".nc",
 })
