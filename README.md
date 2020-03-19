@@ -23,7 +23,7 @@ python month.py
 The R scripts will produce a visualizations:
 
 Rscript day.r dayfile
-Rscript month.r monthfile
+Rscript month-simple.r monthfile
 
 NB: for future purposes, running month.r still requires a history file gfas_0001_cfire_climatology_2003_2018.nc
 
