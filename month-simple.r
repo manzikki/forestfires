@@ -36,7 +36,7 @@ current <- mask(current, country)
 idx <- labels_current
 
 # Compute sum over the area
-current_sum <- cellStats(current, sum) * 86400 * 1E-9
+current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 #open the file to read the time dimension for the first day
 ncin <- nc_open(woffile)
@@ -44,10 +44,10 @@ time <- ncvar_get(ncin,'time')
 times <- convertDateNcdf2R(time, units = "hours", origin = as.POSIXct("1900-01-01",  tz = "UTC"))
 times_no <- str_replace(times[20], "UTC", "")
 times_no <- str_replace(times_no, "-20", "")
-
+ylabt <- expression(paste("Tonnes per day per m"^"2"))
 fname = paste(times_no, "-wof.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire Overall Flux of Burnt Carbon, Thailand", times_no))
+barplot(current_sum, names.arg=idx, main=paste("Wildfire Overall Flux of Burnt Carbon, Thailand", times_no), ylab=ylabt)
 
 
 # Load current emissions: CO2
@@ -62,11 +62,11 @@ current <- mask(current, country)
 idx <- labels_current
 
 # Compute sum over the area
-current_sum <- cellStats(current, sum) * 86400 * 1E-9
+current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-co2.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide, Thailand", times_no))
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide, Thailand", times_no),  ylab=ylabt)
 
 # Load current emissions: CO
 current_emissions <- brick(woffile, varname="cofire")
@@ -80,11 +80,11 @@ current <- mask(current, country)
 idx <- labels_current
 
 # Compute sum over the area
-current_sum <- cellStats(current, sum) * 86400 * 1E-9
+current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-co.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Monoxide, Thailand", times_no))
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Monoxide, Thailand", times_no),  ylab=ylabt)
 
 # Load current emissions: PM2.5
 current_emissions <- brick(woffile, varname="pm2p5fire")
@@ -98,11 +98,11 @@ current <- mask(current, country)
 idx <- labels_current
 
 # Compute sum over the area
-current_sum <- cellStats(current, sum) * 86400 * 1E-9
+current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-pm25.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Particulate Matter PM2.5, Thailand", times_no))
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Particulate Matter PM2.5, Thailand", times_no), ylab=ylabt)
 
 
 # Create a map of emissions for the first day of the month
