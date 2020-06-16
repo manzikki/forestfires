@@ -1,6 +1,7 @@
 #Download fire radiative power for one day. Either that day is given as parameter or it's today - 2.
-#The optional paramter's format is 2020-01-30
-#The output file is datefrp.nc, for example 2020-01-30frp.nc
+#The optional parameter's format is 2020-01-30
+#The output file is date.nc like 20-01-30.nc
+#Variable codes (like 99.210 for frp) can be found at https://apps.ecmwf.int/datasets/data/cams-gfas/. Log in and check the request.
 #Marko Niinimaki, niinimakim@webster.ac.th 2020
 #!/usr/bin/env python
 import datetime
@@ -30,9 +31,8 @@ if len(sys.argv) == 2:
 else:
     dstr = str(year)+"-"+monthstr+"-"+daystr
 
-print dstr
+#print (dstr)
 
-#!/usr/bin/env python
 from ecmwfapi import ECMWFDataServer
 server = ECMWFDataServer()
 server.retrieve({
@@ -41,7 +41,7 @@ server.retrieve({
     "date": dstr,
     "expver": "0001",
     "levtype": "sfc",
-    "param": "99.210/87.210",
+    "param": "99.210/87.210/90.210",
     "step": "0-24",
     "stream": "gfas",
     "time": "00:00:00",
