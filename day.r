@@ -1,9 +1,10 @@
 # Creates graphs/maps about forest fires in SEA
 # Call by: Rscript day.r dayfile.nc
 # Use day.py to produce the dayfile.
-# Outputfiles: dayfrp.jpg, daypm25.jpg
+# Outputfiles: dayfrp.jpg, daypm25.jpg, oc.jpg
 # Based on an example by Claudia Vitolo
 # Marko Niinimaki, niinimakim@webster.ac.th 2020
+# Sinjan Pokharel
 ### PACKAGES ###
 
 # Install
@@ -46,14 +47,19 @@ frp <- raster::rotate(raster::brick(dayfile, varname="frpfire"))
 # Load global PM2.5 layer and rotate longitude to be in the range [-180, +180]
 pm2p5 <- raster::rotate(raster::brick(dayfile, varname="pm2p5fire"))
 
-# Crop frp and pm2p5 over SEA
+# Load global OC layer and rotate longitude to be in the range [-180, +180]
+OC <- raster::rotate(raster::brick(dayfile, varname="ocfire"))
+
+# Crop frp , pm2p5 and C over SEA
 frp_sea <- raster::crop(frp, seabox)
 pm2p5_sea <- raster::crop(pm2p5, seabox)
+OC_sea <- raster::crop(OC, seabox)
 
 # Calculate the area of each cell of raster, applies a correction for latitude -> m2
 area_raster <- raster::area(pm2p5_sea[[1]])*1000000
 
 mydate <- str_replace(dayfile, ".nc", "")
+
 mainlabel = paste("FRP in W/m2", mydate)
 
 # Plot the FRP to frp.jpg
@@ -68,6 +74,7 @@ plot(vnm, add=TRUE)
 plot(mmr, add=TRUE)
 
 dev.off()
+
 mainlabel = paste("PM 2.5", mydate)
 
 oname <- str_replace(dayfile, ".nc", "frp.jpg")
@@ -88,3 +95,21 @@ dev.off()
 
 oname <- str_replace(dayfile, ".nc", "pm25.jpg")
 file.copy("pm25.jpg", oname)
+
+
+mainlabel = paste("Organic Carbon ", mydate)
+# Plot the Organic Carbon
+jpeg("oc.jpg")
+plot(log(OC_sea), main = mainlabel,
+     xlab = "Lon", ylab = "Lat", log="x")
+plot(tha, add = TRUE)
+plot(lao, add = TRUE)
+plot(khm, add=TRUE)
+plot(vnm, add=TRUE)
+plot(mmr, add=TRUE)
+
+
+dev.off()
+
+oname <- str_replace(dayfile, ".nc", "oc.jpg")
+file.copy("oc.jpg", oname)
