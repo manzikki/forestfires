@@ -1,4 +1,5 @@
-#Download fire radiative power for one day. Either that day is given as parameter or it's today - 2.
+#Download fire radiative power, pm2.5, carbon variables for 1 day.
+#Either that day is given as parameter or it's today - 2.
 #The optional parameter's format is 2020-01-30
 #The output file is date.nc like 20-01-30.nc
 #Variable codes (like 99.210 for frp) can be found at https://apps.ecmwf.int/datasets/data/cams-gfas/. Log in and check the request.
