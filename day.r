@@ -74,14 +74,30 @@ plot(vnm, add=TRUE)
 plot(mmr, add=TRUE)
 
 dev.off()
+# Plot the FRP to frp.svg
+svg("frp.svg")
+
+plot(frp_sea, main = mainlabel,
+     xlab = "Lon", ylab = "Lat")
+plot(tha, add= TRUE)
+plot(lao, add=TRUE)
+plot(khm, add=TRUE)
+plot(vnm, add=TRUE)
+plot(mmr, add=TRUE)
+
+dev.off()
 
 mainlabel = paste("PM 2.5", mydate)
 
+#copy stuff to corresponding names
 oname <- str_replace(dayfile, ".nc", "frp.jpg")
 file.copy("frp.jpg", oname)
+oname <- str_replace(dayfile, ".nc", "frp.svg")
+file.copy("frp.svg", oname)
 
-# Plot the PM2.5
+# Plot the PM2.5 to jpg
 jpeg("pm25.jpg")
+
 plot(pm2p5_sea, main = mainlabel,
      xlab = "Lon", ylab = "Lat")
 plot(tha, add = TRUE)
@@ -89,16 +105,28 @@ plot(lao, add = TRUE)
 plot(khm, add=TRUE)
 plot(vnm, add=TRUE)
 plot(mmr, add=TRUE)
+dev.off()
 
+# Plot the PM2.5 to svg
+svg("pm25.svg")
 
+plot(pm2p5_sea, main = mainlabel,
+     xlab = "Lon", ylab = "Lat")
+plot(tha, add = TRUE)
+plot(lao, add = TRUE)
+plot(khm, add=TRUE)
+plot(vnm, add=TRUE)
+plot(mmr, add=TRUE)
 dev.off()
 
 oname <- str_replace(dayfile, ".nc", "pm25.jpg")
 file.copy("pm25.jpg", oname)
+oname <- str_replace(dayfile, ".nc", "pm25.svg")
+file.copy("pm25.svg", oname)
 
 
 mainlabel = paste("Organic Carbon ", mydate)
-# Plot the Organic Carbon
+# Plot the Organic Carbon to jpg
 jpeg("oc.jpg")
 plot(log(OC_sea), main = mainlabel,
      xlab = "Lon", ylab = "Lat", log="x")
@@ -107,9 +135,20 @@ plot(lao, add = TRUE)
 plot(khm, add=TRUE)
 plot(vnm, add=TRUE)
 plot(mmr, add=TRUE)
+dev.off()
 
-
+# Plot the Organic Carbon to svg
+svg("oc.svg")
+plot(log(OC_sea), main = mainlabel,
+     xlab = "Lon", ylab = "Lat", log="x")
+plot(tha, add = TRUE)
+plot(lao, add = TRUE)
+plot(khm, add=TRUE)
+plot(vnm, add=TRUE)
+plot(mmr, add=TRUE)
 dev.off()
 
 oname <- str_replace(dayfile, ".nc", "oc.jpg")
 file.copy("oc.jpg", oname)
+oname <- str_replace(dayfile, ".nc", "oc.svg")
+file.copy("oc.svg", oname)
