@@ -127,7 +127,7 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-frp.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab=ylabt)
+barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab="FRP in W/m2")
 
 
 
