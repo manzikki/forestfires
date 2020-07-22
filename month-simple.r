@@ -18,7 +18,15 @@ if (length(args) < 1) {
 
 woffile = args[1]
 
-country <- raster::getData(name = "GADM", country = "Thailand", level = 0)
+
+thai <- raster::getData(name = "GADM", country = "Thailand", level = 0)
+laos <- raster::getData(name = "GADM", country = "Laos", level = 0)
+viet <- raster::getData(name = "GADM", country = "Vietnam", level = 0)
+myan <- raster::getData(name = "GADM", country = "Myanmar", level = 0)
+camb <- raster::getData(name = "GADM", country = "Cambodia", level = 0)
+
+
+country <- bind(thai, laos, viet, myan, camb)
 
 # Load the climatology
 gfas_data_mean <- brick("gfas_0001_cfire_climatology_2003_2018.nc",
@@ -47,8 +55,7 @@ times_no <- str_replace(times_no, "-20", "")
 ylabt <- expression(paste("Tonnes per day per m"^"2"))
 fname = paste(times_no, "-wof.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire Overall Flux of Burnt Carbon, Thailand", times_no), ylab=ylabt)
-
+barplot(current_sum, names.arg=idx, main=paste("Wildfire Overall Flux of Burnt Carbon", times_no), ylab=ylabt)
 
 # Load current emissions: CO2
 current_emissions <- brick(woffile, varname="co2fire")
@@ -66,7 +73,7 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-co2.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide, Thailand", times_no),  ylab=ylabt)
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide", times_no),  ylab=ylabt)
 
 # Load current emissions: CO
 current_emissions <- brick(woffile, varname="cofire")
@@ -84,7 +91,7 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-co.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Monoxide, Thailand", times_no),  ylab=ylabt)
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Monoxide", times_no),  ylab=ylabt)
 
 # Load current emissions: PM2.5
 current_emissions <- brick(woffile, varname="pm2p5fire")
@@ -102,7 +109,26 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-pm25.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Particulate Matter PM2.5, Thailand", times_no), ylab=ylabt)
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Particulate Matter PM2.5", times_no), ylab=ylabt)
+
+# Load current emissions: FRF
+current_emissions <- brick(woffile, varname="frpfire")
+labels_current <- substr(names(current_emissions), 7, 11)
+aoi <- as(extent(gfas_data_mean), "SpatialPolygons")
+current_area <- raster::area(current_emissions) * 1000000 # in m2
+current <- raster::mask(current_emissions * current_area, aoi)
+current <- mask(current, country)
+
+# Find indices in common
+idx <- labels_current
+
+# Compute sum over the area
+current_sum <- cellStats(current, sum) * 86400 * 1E-3
+
+fname = paste(times_no, "-frp.jpg", sep="")
+jpeg(fname)
+barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab=ylabt)
+
 
 
 # Create a map of emissions for the first day of the month
