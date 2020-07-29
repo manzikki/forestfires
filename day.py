@@ -42,7 +42,7 @@ server.retrieve({
     "date": dstr,
     "expver": "0001",
     "levtype": "sfc",
-    "param": "99.210/87.210/90.210",
+    "param": "99.210/87.210/90.210/80.210",
     "step": "0-24",
     "stream": "gfas",
     "time": "00:00:00",
