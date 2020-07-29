@@ -130,6 +130,25 @@ jpeg(fname)
 barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab="FRP in W/m2")
 
 
+# Load current emissions: co2
+current_emissions <- brick(woffile, varname="co2fire")
+labels_current <- substr(names(current_emissions), 7, 11)
+aoi <- as(extent(gfas_data_mean), "SpatialPolygons")
+current_area <- raster::area(current_emissions) * 1000000 # in m2
+current <- raster::mask(current_emissions * current_area, aoi)
+current <- mask(current, country)
+
+# Find indices in common
+idx <- labels_current
+
+# Compute sum over the area
+current_sum <- cellStats(current, sum) * 86400 * 1E-3
+ylabt <-  expression(paste("kg m"^"-2","s"^"-1"))
+fname = paste(times_no, "-co2.jpg", sep="")
+jpeg(fname)
+barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab=ylabt)
+
+
 
 # Create a map of emissions for the first day of the month
 #Emissions <- current[[1]]
