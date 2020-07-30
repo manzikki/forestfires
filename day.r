@@ -160,15 +160,17 @@ file.copy("oc.svg", oname)
 
 
 #mainlabel = paste("co2 kg m^-2 s^-1", mydate)
-mainlabel <- expression(paste("kg m"^"-2","s"^"-1"))
+mainlabel <- paste("co2 ",mydate)
+label <- expression(paste("kg m"^"-2","s"^"-1"))
 #mainlabel <- paste(mydate, main)
 
 # Plot the co2 to co2.jpg
 jpeg("co2.jpg")
 
-plot(co2_sea, main = mainlabel, sub = paste("co2 ",mydate),
+plot(co2_sea, main = mainlabel,
      xlab = "Lon", ylab = "Lat")
-plot(tha, add= TRUE)
+mtext(label, side=3)
+plot(tha, add=TRUE)
 plot(lao, add=TRUE)
 plot(khm, add=TRUE)
 plot(vnm, add=TRUE)
@@ -181,7 +183,8 @@ svg("co2.svg")
 
 plot(frp_sea, main = mainlabel,
      xlab = "Lon", ylab = "Lat")
-plot(tha, add= TRUE)
+mtext(label, side=3)
+plot(tha, add=TRUE)
 plot(lao, add=TRUE)
 plot(khm, add=TRUE)
 plot(vnm, add=TRUE)
