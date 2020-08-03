@@ -115,12 +115,14 @@ plotmap()
 mtext(label, side=3)
 dev.off()
 
+label <- expression(paste("kg m"^"-2","s"^"-1"))
 mainlabel = paste("Organic Carbon ", mydate)
 # Plot the Organic Carbon to jpg
 jpeg(makefilename(dayfile,"oc.jpg"))
 plot(log(OC_sea), main = mainlabel,
      xlab = "Lon", ylab = "Lat", log="x")
 plotmap()
+mtext(label, side=3)
 dev.off()
 
 # Plot the Organic Carbon to svg
@@ -128,6 +130,7 @@ svg(makefilename(dayfile,"oc.svg"))
 plot(log(OC_sea), main = mainlabel,
      xlab = "Lon", ylab = "Lat", log="x")
 plotmap()
+mtext(label, side=3)
 dev.off()
 
 #mainlabel = paste("co2 kg m^-2 s^-1", mydate)
