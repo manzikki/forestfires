@@ -49,7 +49,8 @@ library("dplyr")
 library("leaflet")
 library("caliver")
 library("stringr")
-
+library(RColorBrewer)
+my.palette <- brewer.pal(n = 9, name = "OrRd")
 
 # bounding box (find dimensions by boundingbox.klokantech.com)
 seabox <- as(raster::extent(89.25,110.38,1.89,28.84), "SpatialPolygons")
@@ -83,14 +84,14 @@ mainlabel = paste("FRP in W/m2", mydate)
 # Plot the FRP to frp.jpg
 jpeg(makefilename(dayfile, "frp.jpg"))
 plot(frp_sea, main = mainlabel,
-     xlab = "Lon", ylab = "Lat")
+     xlab = "Lon", ylab = "Lat", col = my.palette)
 plotmap()
 dev.off()
 
 # Plot the FRP to frp.svg
 svg(makefilename(dayfile, "frp.svg"))
 plot(frp_sea, main = mainlabel,
-     xlab = "Lon", ylab = "Lat")
+     xlab = "Lon", ylab = "Lat", col = my.palette)
 plotmap()
 dev.off()
 
@@ -101,7 +102,7 @@ label <- expression(paste("kg m"^"-2","s"^"-1"))
 jpeg(makefilename(dayfile,"pm25.jpg"))
 
 plot(pm2p5_sea, main = mainlabel,
-     xlab = "Lon", ylab = "Lat")
+     xlab = "Lon", ylab = "Lat", col = my.palette)
 mtext(label, side=3)
 plotmap()
 dev.off()
@@ -110,17 +111,17 @@ dev.off()
 svg(makefilename(dayfile,"pm25.svg"))
 
 plot(pm2p5_sea, main = mainlabel,
-     xlab = "Lon", ylab = "Lat")
+     xlab = "Lon", ylab = "Lat", col = my.palette)
 plotmap()
 mtext(label, side=3)
 dev.off()
 
 label <- expression(paste("kg m"^"-2","s"^"-1"))
-mainlabel = paste("Organic Carbon ", mydate)
+mainlabel = paste("Organic Carbon, log scale ", mydate)
 # Plot the Organic Carbon to jpg
 jpeg(makefilename(dayfile,"oc.jpg"))
 plot(log(OC_sea), main = mainlabel,
-     xlab = "Lon", ylab = "Lat", log="x")
+     xlab = "Lon", ylab = "Lat", log="x", col = my.palette)
 plotmap()
 mtext(label, side=3)
 dev.off()
@@ -128,7 +129,7 @@ dev.off()
 # Plot the Organic Carbon to svg
 svg(makefilename(dayfile,"oc.svg"))
 plot(log(OC_sea), main = mainlabel,
-     xlab = "Lon", ylab = "Lat", log="x")
+     xlab = "Lon", ylab = "Lat", log="x", col = my.palette)
 plotmap()
 mtext(label, side=3)
 dev.off()
@@ -142,7 +143,7 @@ label <- expression(paste("kg m"^"-2","s"^"-1"))
 jpeg(makefilename(dayfile,"co2.jpg"))
 
 plot(co2_sea, main = mainlabel,
-     xlab = "Lon", ylab = "Lat")
+     xlab = "Lon", ylab = "Lat", col = my.palette)
 mtext(label, side=3)
 plotmap()
 dev.off()
@@ -151,7 +152,7 @@ dev.off()
 svg(makefilename(dayfile,"co2.svg"))
 
 plot(frp_sea, main = mainlabel,
-     xlab = "Lon", ylab = "Lat")
+     xlab = "Lon", ylab = "Lat", col = my.palette)
 mtext(label, side=3)
 plotmap()
 dev.off()
