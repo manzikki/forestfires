@@ -50,8 +50,10 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 ncin <- nc_open(woffile)
 time <- ncvar_get(ncin,'time')
 times <- convertDateNcdf2R(time, units = "hours", origin = as.POSIXct("1900-01-01",  tz = "UTC"))
-times_no <- str_replace(times[20], "UTC", "")
-times_no <- str_replace(times_no, "-20", "")
+times_no <- str_replace(times[1], "UTC", "")
+#print(times_no) 2020-08-01
+times_no <- str_replace(times_no, "-01", "")
+#print(times_no) 2020-08
 ylabt <- expression(paste("Tonnes per day per m"^"2"))
 fname = paste(times_no, "-wof.jpg", sep="")
 jpeg(fname)
