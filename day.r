@@ -84,7 +84,7 @@ mainlabel = paste("FRP in W/m2", mydate)
 # Plot the FRP to frp.jpg
 jpeg(makefilename(dayfile, "frp.jpg"))
 plot(frp_sea, main = mainlabel,
-     xlab = "Lon", ylab = "Lat", col = my.palette)
+     xlab = "Lon", ylab = "Lat", col = my.palette, breaks=c(0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0))
 plotmap()
 dev.off()
 
