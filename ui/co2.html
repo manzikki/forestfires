@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Forest Fire Emission In Upper SEA</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+  
+   <style>
+  body {text-align:center}
+    </style>
+    
+         <style>
+    button{
+        padding: 3px 6px;
+    }
+    button img{
+        vertical-align: middle;
+    }
+    
+      
+</style>
+
+</head>
+<body>
+
+<div class="jumbotron text-center" style="background-image: url('2img.jpg');">
+  <h1>Forest Fire Emission In Upper SEA</h1>
+</div>
+
+<style>
+body  {
+  background-image: url("2img.jpg");
+}
+</style> 
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="index.html">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+    
+      <li class="nav-item">
+        <a class="nav-link" href="Paramater.html">Parameter</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Aboutus.html">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Contactus.html">Contact Us</a>
+      </li>    
+    </ul>
+  </div>  
+</nav>
+
+<br>
+       
+
+     <h3>Upper South East Asia Carbon Dioxide Level:</h3>
+     
+     <form>
+    <h6> Check Carbon Dioxide level</h6>
+    <p class="fallbackLabel">Enter the date:</p>
+
+       <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/>
+
+   
+    <br>
+  </form>
+<br> <br>
+      <h2>Carbon Dioxide</h2>
+      <h5>Carbon Dioxide</h5>
+    <img src="http://wildlandfire.thairen.net.th/wfsru/2020-08-23co2.jpg" id="image">
+    <img src="" id="monthimage">
+    
+
+
+    <p>
+        <button type="button" onclick="zoomin()"><img src="" id="image"> Zoom In</button>
+        <button type="button" onclick="zoomout()"><img src="" id="image"> Zoom Out</button>
+    </p>
+
+    <p>
+        <button type="button" onclick="previousDay()"> Previous Day</button>
+        <button type="button" onclick="nextDay()"> Next Day</button>
+    </p>
+
+    <img src="" id="imgae" width="250">
+   
+      <br></br>
+
+      <img scr="pminfo.jpg">
+         
+
+         <script>
+
+function showImage() 
+    {
+        var date = document.getElementById('current-date').value.split('-')
+        var year = date[0]
+        var month = date[1]
+        var day = date[2]
+        var imageName = year + '-' + month + '-' + day + 'co2.jpg'
+        var monthimageName= year + '-' + month + '-' + 'co2.jpg'
+        document.getElementById('image').src = 'http://wildlandfire.thairen.net.th/wfsru/' + imageName;
+        document.getElementById('monthimage').src= 'http://wildlandfire.thairen.net.th/month/' + monthimageName;
+        return false;
+    }
+    
+     function zoomin()
+     {
+        var myImg = document.getElementById('image');
+        var currWidth = myImg.clientWidth;
+        if(currWidth == 500){
+            alert("Maximum zoom-in level reached.");
+        } else{
+            myImg.style.width = (currWidth + 50) + "px";
+        } 
+    }
+    function zoomout(){
+        var myImg = document.getElementById('image');
+        var currWidth = myImg.clientWidth;
+        if(currWidth == 50){
+            alert("Maximum zoom-out level reached.");
+        } else{
+            myImg.style.width = (currWidth - 50) + "px";
+        }
+    }
+    
+    function previousDay(){
+      var date = document.getElementById('current-date').value;
+
+      if(date!=""){
+          $('#current-date').val(Date.parse(date).addDays(-1).toString("yyyy-MM-dd")).change();
+      }
+    }
+    
+    function nextDay(){
+      var date = document.getElementById('current-date').value;
+
+      if(date!=""){
+          $('#current-date').val(Date.parse(date).addDays(1).toString("yyyy-MM-dd")).change();
+      }
+    }
+    
+    
+
+</script>
+     
+     
+</body>
+</html>
+
