@@ -1,6 +1,11 @@
-# Displays Wildfire Overall flux of burnt carbon for a month compared with a climatological average
+# Displays fire variables for a month compared with a climatological average
 # Based on ECMWF examples, only small tuning by Marko Niinimaki niinimakim@webster.ac.th 2020
 # install.packages(c("raster", "mapview"))
+
+#cfire = Wildfire overall flux of burnt carbon
+#co2fire = Wildfire flux of carbon dioxide
+#frpfile = Wildfire radiative power
+#pm2p5fire = Wildfire flux of PM2.5
 
 library("raster")
 # library("mapview")
@@ -27,7 +32,7 @@ clima <- gfas_data_mean * clima_area
 clima <- mask(clima, country)
 
 # Load current emissions
-current_emissions <- brick(woffile)
+current_emissions <- brick(woffile, varname="cfire")
 labels_current <- substr(names(current_emissions), 7, 11)
 aoi <- as(extent(gfas_data_mean), "SpatialPolygons")
 current_area <- raster::area(current_emissions) * 1000000 # in m2
@@ -47,14 +52,14 @@ time <- ncvar_get(ncin,'time')
 times <- convertDateNcdf2R(time, units = "hours", origin = as.POSIXct("1900-01-01",  tz = "UTC"))
 times_no <- str_replace(times, " UTC", "")
 
-jpeg("wof.jpg")
+jpeg("output-cfire.jpg")
 # Grouped Bar Plot
 df <- t(as.matrix(data.frame(climatology = clima_sum, current = current_sum)))
 colnames(df) <- as.character(times_no)
 
 #as.character(as.Date(idx), origin = first))
 barplot(df,
-        main="Wildfire overall flux of burnt Carbon",
+        main="Wildfire overall flux of burnt carbon (cofire)",
         xlab="", ylab = "Megatones per day", col=c("darkgrey", "darkred"),
         legend = rownames(df),,
         beside=TRUE, las = 2, border = NA)
