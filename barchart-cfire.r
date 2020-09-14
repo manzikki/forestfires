@@ -1,4 +1,3 @@
-# Displays fire variables for a month compared with a climatological average
 # Based on ECMWF examples, only small tuning by Marko Niinimaki niinimakim@webster.ac.th 2020
 # install.packages(c("raster", "mapview"))
 
@@ -59,8 +58,8 @@ colnames(df) <- as.character(times_no)
 
 #as.character(as.Date(idx), origin = first))
 barplot(df,
-        main="Wildfire overall flux of burnt carbon (cofire)",
-        xlab="", ylab = "Megatones per day", col=c("darkgrey", "darkred"),
+        main="Wildfire overall flux of burnt carbon (cfire)",
+        xlab="", ylab = "Kilograms per square meter per second", col=c("darkgrey", "darkred"),
         legend = rownames(df),,
         beside=TRUE, las = 2, border = NA)
 
