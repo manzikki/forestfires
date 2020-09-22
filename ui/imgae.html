@@ -20,6 +20,7 @@
 }
 </style>
 <script>
+
 function magnify(imgID, zoom) {
   var img, glass, w, h, bw;
   img = document.getElementById(imgID);
@@ -60,6 +61,7 @@ function magnify(imgID, zoom) {
     /*display what the magnifier glass "sees":*/
     glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
   }
+
   function getCursorPos(e) {
     var a, x = 0, y = 0;
     e = e || window.event;
