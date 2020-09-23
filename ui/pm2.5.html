@@ -10,6 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
   
 
   <style>
@@ -27,7 +28,7 @@
 
 </head>
 <body>
-
+<body onload="showImage()">
 <div class="jumbotron text-center" style="background-image: url('2img.jpg');">
   <h1>Forest Fire Emission In Upper SEA</h1>
 </div>
@@ -75,7 +76,7 @@ body  {
       <h2>PM 2.5</h2>
       <h5>PM 2.5</h5>
       
-    <img src="imageName" id="image">
+    <img src="" id="image">
     <img src="" id="monthimage">
      
     <p>
@@ -94,23 +95,27 @@ body  {
       <br>
       <img scr="pminfo.jpg">
 
-     <script>
+      <script>
      
     function showImage() 
     {
+        if(document.getElementById('current-date').value=='' || (moment(document.getElementById('current-date').value).isValid() && moment(document.getElementById('current-date').value).isAfter(moment().subtract(3, 'days')))){
+        var date = moment().subtract(3, 'days').format("yyyy-MM-DD").split('-')
+        }
+        else{
         var date = document.getElementById('current-date').value.split('-')
+        }
         var year = date[0]
         var month = date[1]
         var day = date[2]
-        var imageName = year + '-' + month + '-' + day + 'pm25.jpg'
-        var monthimageName= year + '-' + month + '-' + 'pm25.jpg'
+        var imageName = year + '-' + month + '-' + day+'pm25.jpg'
+        var monthimageName= year + '-' + month + '-' +'pm25.jpg'
         document.getElementById('image').src = 'http://wildlandfire.thairen.net.th/wfsru/' + imageName;
         document.getElementById('monthimage').src= 'http://wildlandfire.thairen.net.th/month/' + monthimageName;
         return false;
     }
     
-     function zoomin()
-     {
+     function zoomin(){
         var myImg = document.getElementById('image');
         var currWidth = myImg.clientWidth;
         if(currWidth == 500){
@@ -147,7 +152,7 @@ body  {
     
     
 
-</script>
+</script>  
         
 </body>
 </html>

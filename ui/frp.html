@@ -10,6 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
 
 
   <style>
@@ -27,7 +28,7 @@
   
 </head>
 <body>
-
+<body onload="showImage()">
 <div class="jumbotron text-center" style="background-image: url('2img.jpg');">
   <h1>Forest Fire Emission In Upper SEA</h1>
 </div>
@@ -78,8 +79,8 @@ body  {
       <h5>Fire Radiative Power</h5>
 
 
-    
-    <img src="http://wildlandfire.thairen.net.th/wfsru/2020-08-23frp.jpg" id="image">
+   
+    <img src="" id="image">
     <img src="" id="monthimage">
      
 
@@ -93,15 +94,20 @@ body  {
         <button type="button" onclick="nextDay()"> Next Day</button>
     </p>
 
-    <img src="" id="image" width="250">
+    <img src="" id="imgae" width="250">
      
       <br></br>
+      <img scr="pminfo.jpg">
 
-      <script>
-
-function showImage() 
+<script>
+      function showImage() 
     {
+        if(document.getElementById('current-date').value=='' || (moment(document.getElementById('current-date').value).isValid() && moment(document.getElementById('current-date').value).isAfter(moment().subtract(3, 'days')))){
+        var date = moment().subtract(3, 'days').format("yyyy-MM-DD").split('-')
+        }
+        else{
         var date = document.getElementById('current-date').value.split('-')
+        }
         var year = date[0]
         var month = date[1]
         var day = date[2]
@@ -112,8 +118,7 @@ function showImage()
         return false;
     }
     
-     function zoomin()
-     {
+     function zoomin(){
         var myImg = document.getElementById('image');
         var currWidth = myImg.clientWidth;
         if(currWidth == 500){
@@ -150,8 +155,8 @@ function showImage()
     
     
 
-</script>
-        
+</script>      
+     
 </body>
 </html>
 
