@@ -127,18 +127,19 @@ for (aDay in (1:aNumDay)) {
   draw_map_with_data("FRP in Upper SEA", "FRP (W/m2)", aMaxF, aFRP_D, FRP_breaks, aFRP_D$FRP)
 
   aMaxP = max(aPM25_D$PM25, na.rm = TRUE)
-  aMaxP = ifelse(aMaxP < 1,1,aMaxP)
-  PM25_breaks = seq(0,aMaxP,0.2)
+  print(aMaxP) #3.841185e-09
+  #aMaxP = ifelse(aMaxP < 1,1,aMaxP)
+  PM25_breaks = seq(0,aMaxP,length.out=10)
 
   png(paste0("SEAPM25." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
   draw_map_with_data("PM 2.5", expression(paste("PM 2.5 kg m"^"-2","s"^"-1")), aMaxP, aPM25_D, PM25_breaks, aPM25_D$PM25)
 
   aMaxC = max(aCO2_D$CO2, na.rm = TRUE)
-  aMaxC = ifelse(aMaxC < 1,1,aMaxC)
-  CO2_breaks = seq(0,aMaxC,0.2)
+  #aMaxC = ifelse(aMaxC < 1,1,aMaxC)
+  CO2_breaks = seq(0,aMaxC,length.out=10)
 
   png(paste0("SEACO2." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
-  draw_map_with_data("Forest fire CO2 in Upper SEA", expression(paste("PM 2.5 kg m"^"-2","s"^"-1")), aMaxC, aCO2_D, CO2_breaks, aCO2_D$CO2)
+  draw_map_with_data("Forest fire CO2 in Upper SEA", expression(paste("CO2 kg m"^"-2","s"^"-1")), aMaxC, aCO2_D, CO2_breaks, aCO2_D$CO2)
 
 }
 
