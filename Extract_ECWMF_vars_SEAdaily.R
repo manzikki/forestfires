@@ -1,7 +1,8 @@
 #By Dr. Praphatsorn Punsompong 2020.
 #Small adjustments by Marko Niinimaki.
-#This program gets a NetCFD file from the command line and creates FRP maps of upper SEA for each of the
-#dates.
+#This program gets a NetCFD file from the command line and creates maps of upper SEA for each of the
+#dates for variables frp, co2fire and pm25fire that should be found in the NetCDF file.
+#It produces files datefrp.jpg, dateco2.jpg, datepm25.jpg
 
 draw_map_with_data <- function(title, unit, maxlim, daydata, breaks, col) {
     ThaiBound <- raster::getData(name = "GADM", country = "THA", level = 0)
@@ -104,8 +105,10 @@ for (aDay in (1:aNumDay)) {
   aDate = ifelse(aDay < 10,paste0("0",aDay),aDay)
   aMapDate = paste0(aDataDate,".",aDate)
   aMapDate = str_replace(aMapDate,"-",".")
+  aFileDate = paste0(aDataDate,"-",aDate)
   print(aMapDate)
-  
+  print(aFileDate)
+
   atR = subset(aFRP_SEA,aDay) #extract time:day in nc data
   aFRP_D = as.data.frame(atR, xy = TRUE) #change raster to dataframe
   atR = subset(aPM25_SEA,aDay)  
@@ -123,22 +126,26 @@ for (aDay in (1:aNumDay)) {
   aMaxF = ifelse(aMaxF < 1,1,aMaxF)
   FRP_breaks = seq(0,aMaxF,0.2)
     
-  png(paste0("SEAFRP." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
+  jpeg(paste0(aFileDate , "frp.jpg"), width = 2018 , height = 1442 , res = 200)
   draw_map_with_data("FRP in Upper SEA", "FRP (W/m2)", aMaxF, aFRP_D, FRP_breaks, aFRP_D$FRP)
 
   aMaxP = max(aPM25_D$PM25, na.rm = TRUE)
-  print(aMaxP) #3.841185e-09
+  #print("Max PM2.5")
+  #print(aMaxP) #3.841185e-09
   #aMaxP = ifelse(aMaxP < 1,1,aMaxP)
-  PM25_breaks = seq(0,aMaxP,length.out=10)
+  #these breaks should be hardcoded for consistency
+  PM25_breaks = seq(0,aMaxP,length.out=5)
 
-  png(paste0("SEAPM25." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
+  jpeg(paste0(aFileDate , "pm25.jpg"), width = 2018 , height = 1442 , res = 200)
   draw_map_with_data("PM 2.5", expression(paste("PM 2.5 kg m"^"-2","s"^"-1")), aMaxP, aPM25_D, PM25_breaks, aPM25_D$PM25)
 
   aMaxC = max(aCO2_D$CO2, na.rm = TRUE)
+  #print("Max CO2")
+  #print(aMaxC) #3.841185e-09
   #aMaxC = ifelse(aMaxC < 1,1,aMaxC)
   CO2_breaks = seq(0,aMaxC,length.out=10)
 
-  png(paste0("SEACO2." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
+  jpeg(paste0(aFileDate , "co2.jpg"), width = 2018 , height = 1442 , res = 200)
   draw_map_with_data("Forest fire CO2 in Upper SEA", expression(paste("CO2 kg m"^"-2","s"^"-1")), aMaxC, aCO2_D, CO2_breaks, aCO2_D$CO2)
 
 }
