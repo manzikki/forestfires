@@ -4,7 +4,11 @@
 #dates for variables frp, co2fire and pm25fire that should be found in the NetCDF file.
 #It produces files datefrp.jpg, dateco2.jpg, datepm25.jpg
 
-draw_map_with_data <- function(title, unit, maxlim, daydata, breaks, col) {
+#For truncating very long label numbers
+scalef <- function(x) sprintf("%.2f", x)
+
+#Draws the maps
+draw_map_with_data <- function(title, unit, maxlim, daydata, breaks, labels, col) {
     ThaiBound <- raster::getData(name = "GADM", country = "THA", level = 0)
     LaoBound <- raster::getData(name = "GADM", country = "LAO", level = 0)
     KhmBound <- raster::getData(name = "GADM", country = "KHM", level = 0)
@@ -17,7 +21,7 @@ draw_map_with_data <- function(title, unit, maxlim, daydata, breaks, col) {
                               na.value = NA,
                               limits = c(0,maxlim),
                               breaks = breaks,
-                              labels = breaks) +
+                              labels = labels) +
           scale_x_continuous(name=expression(paste("Longitude")),
                              limits=c(90,111),
                              expand=c(0,0)) +
@@ -95,10 +99,14 @@ crs(aPM25_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 crs(aCO2_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 
 aFRP_SEA = mask(aFRP_data,seabox)
-aPM25_SEA = mask(aPM25_data,seabox)
-aCO2_SEA = mask(aCO2_data,seabox)
 
-#plot FRP map
+aPM25_SEA = mask(aPM25_data,seabox)
+aPM25_SEAmg = aPM25_SEA * 1000000000 #mg/m^2
+
+aCO2_SEA = mask(aCO2_data,seabox)
+aCO2_SEAmg = aPM25_SEA * 1000000000 #mg/m^2
+
+#plot daily maps
 aNumDay = nlayers(aFRP_SEA) #number of days in Month
 
 for (aDay in (1:aNumDay)) {
@@ -106,14 +114,14 @@ for (aDay in (1:aNumDay)) {
   aMapDate = paste0(aDataDate,".",aDate)
   aMapDate = str_replace(aMapDate,"-",".")
   aFileDate = paste0(aDataDate,"-",aDate)
-  print(aMapDate)
+  #print(aMapDate)
   print(aFileDate)
 
   atR = subset(aFRP_SEA,aDay) #extract time:day in nc data
   aFRP_D = as.data.frame(atR, xy = TRUE) #change raster to dataframe
-  atR = subset(aPM25_SEA,aDay)  
+  atR = subset(aPM25_SEAmg,aDay)
   aPM25_D = as.data.frame(atR, xy = TRUE)
-  atR = subset(aCO2_SEA,aDay)
+  atR = subset(aCO2_SEAmg,aDay)
   aCO2_D = as.data.frame(atR, xy = TRUE)
 
   names(aFRP_D)[3]="FRP"
@@ -123,12 +131,13 @@ for (aDay in (1:aNumDay)) {
   summary(aFRP_D)
 
   aMaxF = max(aFRP_D$FRP, na.rm = TRUE)
-  aMaxF = ifelse(aMaxF < 1,1,aMaxF)
   FRP_breaks = seq(0,aMaxF,0.2)
-  FRP_breaks = ifelse(aMaxF <= 2, seq(0,aMaxF,0.2), seq(0,aMaxF,0.5))
-
+  if (aMaxF > 2) { FRP_breaks = seq(0,aMaxF,0.5) }
+  if (aMaxF > 6) { FRP_breaks = seq(0,aMaxF,1) }
+  aMaxF = ifelse(aMaxF < 1,1,aMaxF)
+  #print(FRP_breaks)
   jpeg(paste0(aFileDate , "frp.jpg"), width = 1442 , height = 1442 , res = 200)
-  draw_map_with_data("FRP in Upper SEA", "FRP (W/m2)", aMaxF, aFRP_D, FRP_breaks, aFRP_D$FRP)
+  draw_map_with_data("FRP in Upper SEA", "FRP (W/m2)", aMaxF, aFRP_D, FRP_breaks, FRP_breaks, aFRP_D$FRP)
 
   aMaxP = max(aPM25_D$PM25, na.rm = TRUE)
   #print("Max PM2.5")
@@ -138,16 +147,20 @@ for (aDay in (1:aNumDay)) {
   PM25_breaks = seq(0,aMaxP,length.out=5)
 
   jpeg(paste0(aFileDate , "pm25.jpg"), width = 1442 , height = 1442 , res = 200)
-  draw_map_with_data("PM 2.5", expression(paste("PM 2.5 kg m"^"-2","s"^"-1")), aMaxP, aPM25_D, PM25_breaks, aPM25_D$PM25)
+  PM25_labels = scalef(PM25_breaks)
+
+  draw_map_with_data("PM 2.5", expression(paste("PM 2.5 mg m"^"-2","s"^"-1")), 
+                      aMaxP, aPM25_D, PM25_breaks, PM25_labels, aPM25_D$PM25)
 
   aMaxC = max(aCO2_D$CO2, na.rm = TRUE)
   #print("Max CO2")
   #print(aMaxC) #3.841185e-09
   #aMaxC = ifelse(aMaxC < 1,1,aMaxC)
   CO2_breaks = seq(0,aMaxC,length.out=10)
+  CO2_labels = scalef(CO2_breaks)
 
   jpeg(paste0(aFileDate , "co2.jpg"), width = 1442 , height = 1442 , res = 200)
-  draw_map_with_data("Forest fire CO2 in Upper SEA", expression(paste("CO2 kg m"^"-2","s"^"-1")), aMaxC, aCO2_D, CO2_breaks, aCO2_D$CO2)
+  draw_map_with_data("Forest fire CO2 in Upper SEA", expression(paste("CO2 mg m"^"-2","s"^"-1")), aMaxC, aCO2_D, CO2_breaks, CO2_labels, aCO2_D$CO2)
 
 }
 
