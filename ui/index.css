@@ -1,34 +1,50 @@
-   ul {
+.nav.navbar-nav.navbar-center{
+    text-decoration: underline;
+}
+
+div p{
+    color: white;
+    text-indent: 30px;
+    margin:0px;
+    padding:0px;
+}
+
+.navbar{
+    text-align: right;
+    color: white;
+    text-indent: 20px;
+}
+
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333333;
 }
 
 li {
-  float: left;
+  float: right;
 }
 
 li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 16px;
+  padding: 14px 16px;
   text-decoration: none;
 }
 
-li a:hover {
-  background-color: #111111;
+.navcontent{
+    text-align: right;
+    
 }
 
-.nav-left{
-    float: right;
-}
-
-.navbar-text{
-    text-align: center;
+.col-4{
     color: white;
-    text-indent: 350px;
-    text-decoration: underline;
 }
+
+body  {
+  background-image: url("backimg.jpg");
+}
+
+
