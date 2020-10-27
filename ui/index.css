@@ -45,6 +45,24 @@ li a {
 
 body  {
   background-image: url("backimg.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.nav-link{
+    color: black;
+}
+
+a:link{
+    color: red;
+}
+
+.last{
+    color: black;
+}
+
+.navcontent a:hover{
+    color: black;
 }
 
 
