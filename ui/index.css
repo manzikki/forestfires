@@ -41,6 +41,7 @@ li a {
 
 .col-4{
     color: white;
+
 }
 
 body  {
@@ -63,6 +64,14 @@ a:link{
 
 .navcontent a:hover{
     color: black;
+}
+
+.notice p{
+    color: gold;
+}
+
+.language{
+    float: right;
 }
 
 
