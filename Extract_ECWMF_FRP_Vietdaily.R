@@ -1,6 +1,6 @@
 #By Dr. Praphatsorn Punsompong 2020.
 #Small adjustments by Marko Niinimaki.
-#This program gets a NetCFD file from the command line and creates FRP maps of Thailand for each of the
+#This program gets a NetCFD file from the command line and creates FRP maps of Vietnam for each of the
 #dates.
 library(ncdf4) 
 library(raster) 
@@ -19,12 +19,12 @@ aNCfile = args[1]
 #read data
 aDataDate = str_replace(aNCfile, ".nc", "")
 
-# Get Thai administrative boundary
-ThaiBound <- raster::getData(name = "GADM", country = "THA", level = 0)
+# Get Viet administrative boundary
+VietBound <- raster::getData(name = "GADM", country = "VNM", level = 0)
 
-#ThaiBound = shapefile(paste0(ws,"gadm36_THA_0_wgs84.shp"))
-crs(ThaiBound) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0" 
-aTHext = extent(ThaiBound)
+#VietBound = shapefile(paste0(ws,"gadm36_THA_0_wgs84.shp"))
+crs(VietBound) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0" 
+aTHext = extent(VietBound)
 
 #extraction
 #PM25_data = brick(paste0(ws,aNCfile), var="pm2p5fire")
@@ -35,8 +35,8 @@ crs(aPM25_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 crs(aFRP_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 
 
-aPM25_TH = mask(aPM25_data,ThaiBound)
-aFRP_TH = mask(aFRP_data,ThaiBound)
+aPM25_TH = mask(aPM25_data,VietBound)
+aFRP_TH = mask(aFRP_data,VietBound)
 
 #plot FRP map
 aNumDay = nlayers(aFRP_TH) #number of day in Month
@@ -66,7 +66,7 @@ for (aDay in (1:aNumDay)) {
   
   aPM25Max = max(aPM25_D$PM25, na.rm = TRUE)
   aPM25Max = ifelse(aPM25Max < 1,1,aPM25Max)
-  jpeg(paste0(aFileDate , "frp-thai.jpg"), width = 1442 , height = 1442 , res = 200)
+  jpeg(paste0(aFileDate , "frp-viet.jpg"), width = 1442 , height = 1442 , res = 200)
   #png(paste0("THFRP." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
   
   aPlot = ggplot()+
@@ -78,17 +78,17 @@ for (aDay in (1:aNumDay)) {
                               breaks = FRP_breaks, 
                               labels = FRP_breaks) + 
           scale_x_continuous(name=expression(paste("Longitude")),
-                             limits=c(97,106),
+                             limits=c(102,110),
                              expand=c(0,0)) +
           scale_y_continuous(name=expression(paste("Latitude")),
-                             limits=c(5,21),
+                             limits=c(5,25),
                              expand=c(0,0)) +
-          geom_polygon(data=ThaiBound, 
+          geom_polygon(data=VietBound, 
                        aes(x=long, y=lat, group=group), 
                        fill=NA,
                        color="black", 
                        size=0.1)+
-          ggtitle("Thailand FRP in W/m2", 
+          ggtitle("Vietnam FRP in W/m2", 
                   subtitle = paste0("Date : ", aMapDate))+
           labs(fill = "FRP (W/m2)")+
           theme(panel.ontop=FALSE, 
