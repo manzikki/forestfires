@@ -12,7 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
 
-
+ <link rel="stylesheet" href="index.css">
   <style>
   body {text-align:center}
     </style>
@@ -29,37 +29,28 @@
 </head>
 <body>
 <body onload="showImage()">
-<div class="jumbotron text-center" style="background-image: url('2img.jpg');">
-  <h1>Forest Fire Emission In Upper SEA</h1>
-</div>
+
 
 <style>
 body  {
-  background-image: url("2img.jpg");
+  background-image: url("background2.jpg");
 }
 </style> 
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="index.html">Home</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-    
-      <li class="nav-item">
-        <a class="nav-link" href="Paramater.html">Parameter</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Aboutus.html">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Contactus.html">Contact Us</a>
-      </li>    
-    </ul>
-  </div>  
-</nav>
-
+<nav class= "navbar navbar-inverse">
+      <ul class="nav navbar-nav navbar-center">
+          <h4><b> Forest Fire Emissions  In Upper SEA </b></h4> </ul>
+        <div class="navcontent">
+    <ul>
+        <li> <a href="Contactus.html"> Contact US</a></li>
+         <li> <a href="Aboutus.html"> About US </a></li>
+             <li> <a href="Paramater.html">Parameters</a></li>
+        <li> <a href="index.html">Home</a></li>       
+            </ul> </div>
+          </nav>
+    <button class="language"> <a href="index.html"> EN </a> 
+        <a href="indexthai.html">\ TH</a>
+    </button>
 <br>
 
 
@@ -69,7 +60,24 @@ body  {
      <form>
     <h6> Check FRP level</h6>
     <p class="fallbackLabel">Enter the date:</p>
-
+ <div class="row">
+            <div class="col-6"> 
+      <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/> </div>
+            <div class="col-6">
+      <div class="dropdown">
+  <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">Country
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+      <option><a href="#">Cambodia</a> </option>
+      <option><a href="#">Laos</a> </option>
+    <option><a href="#">Myanmar</a></option>
+    <option> <a href="#">Thailand</a></option>
+         <option> <a href="#">Vietnam</a> </option> 
+  </ul>
+</div>
+             </div>
+             </div>
+    <br>
        <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/>
 
    <br>
@@ -80,7 +88,7 @@ body  {
 
 
    
-    <img src="" id="image">
+    <img src="" height= 480 width=480 id="image">
     <img src="" id="monthimage">
      
 
