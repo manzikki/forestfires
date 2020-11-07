@@ -20,11 +20,10 @@ aNCfile = args[1]
 aDataDate = str_replace(aNCfile, ".nc", "")
 
 # Get Viet administrative boundary
-VietBound <- raster::getData(name = "GADM", country = "VNM", level = 0)
+CountryBound <- raster::getData(name = "GADM", country = "VNM", level = 0)
 
-#VietBound = shapefile(paste0(ws,"gadm36_THA_0_wgs84.shp"))
-crs(VietBound) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0" 
-aTHext = extent(VietBound)
+crs(CountryBound) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0" 
+aTHext = extent(CountryBound)
 
 #extraction
 #PM25_data = brick(paste0(ws,aNCfile), var="pm2p5fire")
@@ -35,8 +34,8 @@ crs(aPM25_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 crs(aFRP_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 
 
-aPM25_TH = mask(aPM25_data,VietBound)
-aFRP_TH = mask(aFRP_data,VietBound)
+aPM25_TH = mask(aPM25_data,CountryBound)
+aFRP_TH = mask(aFRP_data,CountryBound)
 
 #plot FRP map
 aNumDay = nlayers(aFRP_TH) #number of day in Month
@@ -66,10 +65,13 @@ for (aDay in (1:aNumDay)) {
   
   aPM25Max = max(aPM25_D$PM25, na.rm = TRUE)
   aPM25Max = ifelse(aPM25Max < 1,1,aPM25Max)
-  jpeg(paste0(aFileDate , "frp-viet.jpg"), width = 1442 , height = 1442 , res = 200)
-  #png(paste0("THFRP." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
   
-  aPlot = ggplot()+
+  fname = paste0(aFileDate , "frp-viet.jpg")
+  if (!file.exists(fname)) {
+      jpeg(fname, width = 1442 , height = 1442 , res = 200)
+      #png(paste0("THFRP." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
+  
+      aPlot = ggplot()+
           geom_raster(data=aFRP_D,aes(x,y,fill=FRP))+
           scale_fill_gradient(low = "white",
                               high = "red", 
@@ -83,7 +85,7 @@ for (aDay in (1:aNumDay)) {
           scale_y_continuous(name=expression(paste("Latitude")),
                              limits=c(5,25),
                              expand=c(0,0)) +
-          geom_polygon(data=VietBound, 
+          geom_polygon(data=CountryBound, 
                        aes(x=long, y=lat, group=group), 
                        fill=NA,
                        color="black", 
@@ -97,8 +99,9 @@ for (aDay in (1:aNumDay)) {
                 legend.title = element_text(color = "black", size = 10)) + 
           coord_equal() 
   
-  print(aPlot)
-  dev.off()
+      print(aPlot)
+      dev.off()
+   }
 }
 
 
