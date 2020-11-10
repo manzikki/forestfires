@@ -34,3 +34,4 @@ Builds maps for each variable and day in the month file.
 
 There are "one country only" R scripts, too.
 
+the directory ui contains the web interface
