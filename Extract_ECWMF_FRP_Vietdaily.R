@@ -10,17 +10,27 @@ library(stringr)
 
 #get the parameter
 args = commandArgs(trailingOnly=TRUE)
-if (length(args) < 1) {
-  stop("Parameters needed: monthly frpfile in the form 2020-XX.nc", call.=FALSE)
+if (length(args) < 2) {
+  stop("Parameters needed: 1: monthly frpfile in the form 2020-XX.nc 2: country ISO3", call.=FALSE)
 }
 aNCfile = args[1]
+aISO3 = args[2]
+afileE = "frp-viet.jpg"
 #get the date from the filename
-
-#read data
 aDataDate = str_replace(aNCfile, ".nc", "")
 
-# Get Viet administrative boundary
-CountryBound <- raster::getData(name = "GADM", country = "VNM", level = 0)
+#Vietnam
+longlimits = c(102,110)
+latlimits = c(5,25)
+
+if (aISO3 == "LAO") {
+longlimits = c(100,108)
+latlimits = c(13,24)
+afileE = "frp-laos.jpg"
+}
+
+# Get country administrative boundary
+CountryBound <- raster::getData(name = "GADM", country = aISO3, level = 0)
 
 crs(CountryBound) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0" 
 aTHext = extent(CountryBound)
@@ -66,7 +76,7 @@ for (aDay in (1:aNumDay)) {
   aPM25Max = max(aPM25_D$PM25, na.rm = TRUE)
   aPM25Max = ifelse(aPM25Max < 1,1,aPM25Max)
   
-  fname = paste0(aFileDate , "frp-viet.jpg")
+  fname = paste0(aFileDate , afileE)
   if (!file.exists(fname)) {
       jpeg(fname, width = 1442 , height = 1442 , res = 200)
       #png(paste0("THFRP." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
@@ -80,17 +90,17 @@ for (aDay in (1:aNumDay)) {
                               breaks = FRP_breaks, 
                               labels = FRP_breaks) + 
           scale_x_continuous(name=expression(paste("Longitude")),
-                             limits=c(102,110),
+                             limits=longlimits,
                              expand=c(0,0)) +
           scale_y_continuous(name=expression(paste("Latitude")),
-                             limits=c(5,25),
+                             limits=latlimits,
                              expand=c(0,0)) +
           geom_polygon(data=CountryBound, 
                        aes(x=long, y=lat, group=group), 
                        fill=NA,
                        color="black", 
                        size=0.1)+
-          ggtitle("Vietnam FRP in W/m2", 
+          ggtitle("FRP in W/m2",
                   subtitle = paste0("Date : ", aMapDate))+
           labs(fill = "FRP (W/m2)")+
           theme(panel.ontop=FALSE, 
