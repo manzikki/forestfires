@@ -45,13 +45,13 @@ li a {
 }
 
 body  {
-  background-image: url("backimg.jpg");
+  background-image: url("background2.jpg");
     background-repeat: no-repeat;
     background-size:cover;
 }
 
 .nav-link{
-    color: black;
+    color: red;
 }
 
 a:link{
@@ -59,7 +59,7 @@ a:link{
 }
 
 .last{
-    color: black;
+    color: red;
 }
 
 .navcontent a:hover{
@@ -72,6 +72,15 @@ a:link{
 
 .language{
     float: right;
+}
+
+.footer{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
 
 
