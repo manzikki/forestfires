@@ -13,6 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
 
  <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="dropdown.css">
   <style>
   body {text-align:center}
     </style>
@@ -55,35 +56,31 @@ body  {
 
 
 
-      <h3>Upper South East Asia FRP Level:</h3>
+      <h3>Upper South East Asia FRP Level</h3>
      
      <form>
-    <h6> Check FRP level</h6>
-    <p class="fallbackLabel">Enter the date:</p>
+
+    
  <div class="row">
             <div class="col-6"> 
+                <p class="fallbackLabel">Enter the date:</p>
       <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/> </div>
             <div class="col-6">
-      <div class="dropdown">
-  <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">Country
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-      <option><a href="#">Cambodia</a> </option>
-      <option><a href="#">Laos</a> </option>
-    <option><a href="#">Myanmar</a></option>
-    <option> <a href="#">Thailand</a></option>
-         <option> <a href="#">Vietnam</a> </option> 
-  </ul>
+     <div class="dropdown">
+  <button class="dropbtn">Countries</button>
+  <div class="dropdown-content">
+    <a href="#">Cambodia</a>
+    <a href="#">Laos</a>
+    <a href="#">Myanmar</a>
+      <a href="frpthailand.html"> Thailand</a>
+      <a href="frpvietnam.html">Vietnam</a>
+  </div>
 </div>
              </div>
              </div>
-    <br>
-       <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/>
-
-   <br>
+   
 </form>
-<br> <br>
-      <h2>FRP</h2>
+
       <h5>Fire Radiative Power</h5>
 
 
