@@ -1,6 +1,6 @@
 #By Dr. Praphatsorn Punsompong 2020.
 #Small adjustments by Marko Niinimaki.
-#This program gets a NetCFD file from the command line and creates FRP maps of Vietnam for each of the
+#This program gets a NetCFD file from the command line and creates FRP maps of the given country for each of the
 #dates.
 library(ncdf4) 
 library(raster) 
@@ -27,6 +27,11 @@ if (aISO3 == "LAO") {
 longlimits = c(100,108)
 latlimits = c(13,24)
 afileE = "frp-laos.jpg"
+}
+if (aISO3 == "KHM") {
+longlimits = c(102,108)
+latlimits = c(10,15)
+afileE = "frp-camb.jpg"
 }
 
 # Get country administrative boundary
