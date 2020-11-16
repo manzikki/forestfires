@@ -1,0 +1,15 @@
+body{
+    background-image: url(forest.jpg);
+         background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.col-3{
+    color: yellow;
+    font-family: serif;
+}
+
+.col-4{
+    color: yellow;
+    font-family: serif;
+}
