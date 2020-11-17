@@ -1,77 +1,59 @@
-.nav.navbar-nav.navbar-center{
-    text-decoration: underline;
-}
-
-div p{
-    color: white;
-    text-indent: 30px;
-    margin:0px;
-    padding:0px;
-}
-
-.navbar{
-    text-align: right;
-    color: white;
-    text-indent: 20px;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-li {
-  float: right;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.navcontent{
-    text-align: right;
-    
-}
-
-.col-4{
-    color: white;
-
-}
-
-body  {
-  background-image: url("forest2%20(1).jpg");
-    background-repeat: no-repeat;
+body{
+    background-image: url(forest.jpg);
+         background-repeat: no-repeat;
     background-size:cover;
 }
 
-.nav-link{
-    color: red;
+.col-3{
+    color: yellow;
+    font-family: serif;
 }
 
-a:link{
-    color: red;
+.col-4{
+    color: yellow;
+    font-family: serif;
 }
 
-.last{
-    color: red;
+.col-4 a:hover{
+    color: yellow;
 }
 
-.navcontent a:hover{
-    color: black;
+.col-4 a:visited{
+    color: yellow;
 }
 
-.notice p{
-    color: gold;
+.col-4 a:active{
+    color: yellow;
+}
+}
+.col-6{
+    color: yellow;
+    font-family: serif;
 }
 
-.language{
-    float: right;
+.col-2{
+    color: yellow;
+    font-family: serif;
+    font-size: larger;
+
+}
+
+.col-1{
+    color: yellow;
+    font-family: serif;
+    font-size: 20px;
+}
+
+.resources{
+    text-align: center;
+}
+
+.resources a:visited{
+    color: yellow;
+}
+
+.resources a:active{
+    color: yellow;
 }
 
 .footer{
@@ -83,4 +65,7 @@ a:link{
   text-align: center;
 }
 
-
+.notice p{
+    color: gold;
+    text-align: right;
+    margin: 0px;

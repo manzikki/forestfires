@@ -11,7 +11,7 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="common.css">
    <style>
   body {text-align:center}
     </style>
@@ -32,22 +32,20 @@
 <body onload="showImage()">
 <nav class= "navbar navbar-inverse">
       <ul class="nav navbar-nav navbar-center">
-          <h4><b> Forest Fire Emissions  In Upper SEA </b></h4> </ul>
+          <h4><b> Fire Emissions  In Upper SEA </b></h4> </ul>
         <div class="navcontent">
     <ul>
         <li> <a href="Contactus.html"> Contact US</a></li>
          <li> <a href="Aboutus.html"> About US </a></li>
              <li> <a href="Paramater.html">Parameters</a></li>
-        <li> <a href="index.html">Home</a></li>       
+        <li> <a href="home.html">Home</a></li>       
             </ul> </div>
           </nav>
-    <button class="language"> <a href="index.html"> EN </a> 
-        <a href="indexthai.html">\ TH</a>
-    </button>
+    
 
 <style>
 body  {
-  background-image: url("background2.jpg");
+  background-image: url("forest.jpg");
 }
 </style> 
 
@@ -59,14 +57,25 @@ body  {
      <h3>Upper South East Asia Carbon Dioxide Level:</h3>
      
      <form>
-    <h6> Check Carbon Dioxide level</h6>
     <p class="fallbackLabel">Enter the date:</p>
-
-       <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/>
-    <br>
-  </form>
-<br> <br>
-      <h2>Carbon Dioxide</h2>
+ <div class="row">
+            <div class="col-6"> 
+      <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/> </div>
+            <div class="col-6">
+      <div class="dropdown">
+  <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">Country
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+      <option><a href="#">Cambodia</a> </option>
+      <option><a href="#">Laos</a> </option>
+    <option><a href="#">Myanmar</a></option>
+    <option> <a href="#">Thailand</a></option>
+         <option> <a href="#">Vietnam</a> </option> 
+  </ul>
+</div>
+             </div>
+             </div>
+  
       <h5>Carbon Dioxide</h5>
     <img src="" width=480 height=480 id="image">
     <img src="" id="monthimage">
@@ -83,12 +92,7 @@ body  {
         <button type="button" onclick="nextDay()"> Next Day</button>
     </p>
 
-    <img src="" id="imgae" width="250">
-   
-      <br></br>
-
-      <img scr="pminfo.jpg" width= 480 height=480>
-         
+    
 <script>
       function showImage() 
     {

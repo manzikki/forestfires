@@ -14,6 +14,18 @@ body{
     font-family: serif;
 }
 
+.col-4 a:hover{
+    color: yellow;
+}
+
+.col-4 a:visited{
+    color: yellow;
+}
+
+.col-4 a:active{
+    color: yellow;
+}
+}
 .col-6{
     color: yellow;
     font-family: serif;
@@ -23,6 +35,7 @@ body{
     color: yellow;
     font-family: serif;
     font-size: larger;
+
 }
 
 .col-1{
@@ -34,3 +47,25 @@ body{
 .resources{
     text-align: center;
 }
+
+.resources a:visited{
+    color: yellow;
+}
+
+.resources a:active{
+    color: yellow;
+}
+
+.footer{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.notice p{
+    color: gold;
+    text-align: right;
+    margin: 0px;
