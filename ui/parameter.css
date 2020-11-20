@@ -1,0 +1,98 @@
+
+  body {text-align:center}
+    button{
+        padding: 3px 6px;
+    }
+    button img{
+        vertical-align: middle;
+    }
+  
+
+body  {
+  background-image: url("forest.jpg");
+     background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.FRP,.CD, .PM, .DS { 
+           
+           height:500px;
+           width:400px;
+           background: rgba(0, 0, 0, 0.3);
+           color: white;
+           padding: 15px;
+          
+           margin-left:8.5%;
+           margin-top:8%;
+           /*color:gold;*/
+       
+           font-family: Georgia, serif;
+        }
+       
+         a,u {
+       
+             color:gold;
+             font-family: Georgia, serif; 
+            
+        }
+       
+       h4,u,strong{
+           
+           color:gold;
+           font-family: Georgia, serif; 
+           font-size: 40px;
+       
+       }
+      
+       .para{
+         
+           height:400px;
+           width:300;
+           background: rgba(0, 0, 0, 0.3);
+           color: white;
+           font-size: 45px;
+           font-family: Georgia, serif; 
+           margin-left:0%;
+           margin-right: 0%;
+           margin-top:4%;
+       }
+       
+       .Sources{
+           height:500px;
+           width:400px;
+           background: rgba(0, 0, 0, 0.3);
+           color: white;
+           
+           
+          
+           margin-left:8.5%;
+           margin-top:8%;
+      
+       
+           font-family: sans-serif;
+       }
+       
+       .navcontent li a {
+           color: yellow;
+           font-weight: normal;
+       }
+
+.navcontent ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navcontent li{
+    float: right;
+}
+
+.navcontent li a{
+    display: block;
+    color: gold;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
