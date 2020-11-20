@@ -5,42 +5,42 @@ body{
 }
 
 .col-3{
-    color: yellow;
+    color: gold;
     font-family: serif;
 }
 
 .col-4{
-    color: yellow;
+    color: gold;
     font-family: serif;
 }
 
 .col-4 a:hover{
-    color: yellow;
+    color: gold;
 }
 
 .col-4 a:visited{
-    color: yellow;
+    color: gold;
 }
 
 .col-4 a:active{
-    color: yellow;
+    color: gold;
 }
 }
 .col-6{
-    color: yellow;
+    color: gold;
     font-family: serif;
 }
 
 .col-2{
-    color: yellow;
-    font-family: serif;
+    color: gold;
+    font-family: Georgia, serif;
     font-size: larger;
 
 }
 
 .col-1{
-    color: yellow;
-    font-family: serif;
+    color: gold;
+    font-family: Georgia, serif;
     font-size: 20px;
 }
 
@@ -49,11 +49,11 @@ body{
 }
 
 .resources a:visited{
-    color: yellow;
+    color: gold;
 }
 
 .resources a:active{
-    color: yellow;
+    color: gold;
 }
 
 .footer{
