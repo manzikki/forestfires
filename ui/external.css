@@ -3,17 +3,18 @@
 }
 
 h2{
-    color: black;
+    color: White;
+    text-align: center;
 }
 
 body{
     background: url("forest.jpg");
-     background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-size:cover;
 }
 
 h4{
-    color: yellow;
+    color: gold;
 }
 
 
@@ -30,37 +31,46 @@ li {
 }
 
 li a {
-  display: block;
-  color: gold;
-    font-weight: bold;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    
+      display: block;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
 }
 
 .col-2{
+
+    
+    margin: auto;
+    background: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    overflow: hidden;
+    padding: 15px;
+    text-align: center
+        
+ 
+    width: 200px;
+    border: 25px solid rgba(225, 215, 0, 0.9);
+}
+
+.col-3{
+    
   margin: auto;
   background: #fff;
   overflow: hidden;
   padding: 15px;
-    background-color: antiquewhite;
+  background: rgba(0, 0, 0, 0.3);
   width: 200px;
-  border: 25px solid gold;
-}
-
-.col-3{
-    margin: auto;
-  background: #fff;
-  overflow: hidden;
-  padding: 15px;
-    background-color: antiquewhite;
-  width: 200px;
-  border: 25px solid gold;
+  border: 25px solid rgba(225, 215, 0, 0.9);
 }
 
 .navcontent li a{
-    color: yellow;
+    color: gold;
     font-weight: normal;
+    font-family: georgia, sans-serif
 }
 
 .footer{
