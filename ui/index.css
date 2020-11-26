@@ -6,12 +6,12 @@ body{
 
 .col-3{
     color: gold;
-    font-family: serif;
+    font-family: Georgia, serif;
 }
 
 .col-4{
     color: gold;
-    font-family: serif;
+    font-family: Georgia, serif;
 }
 
 .col-4 a:hover{
@@ -28,7 +28,7 @@ body{
 }
 .col-6{
     color: gold;
-    font-family: serif;
+    font-family: Georgia, serif;
 }
 
 .col-2{
@@ -44,6 +44,15 @@ body{
     font-size: 20px;
 }
 
+.resources h6{
+    font-size: 20px;
+    color: gold;
+}
+
+.col-3 a:hover{
+    color: gold;
+    
+}
 .resources{
     text-align: center;
 }

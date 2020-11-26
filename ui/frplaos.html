@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Forest Fire Emission In Upper SEA</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
+
+ <link rel="stylesheet" href="common.css">
+  <style>
+  body {text-align:center}
+    </style>
+    
+         <style>
+    button{
+        padding: 3px 6px;
+    }
+    button img{
+        vertical-align: middle;
+    }
+    </style>
+  
+</head>
+<body>
+<body onload="showImage()">
+
+
+<style>
+body  {
+  background-image: url("forest.jpg");
+}
+</style> 
+
+<nav class= "navbar navbar-inverse">
+      <ul class="nav navbar-nav navbar-center">
+          <h4><b> Forest Fire Emissions  In Upper SEA </b></h4> </ul>
+        <div class="navcontent">
+    <ul>
+        <li> <a href="Contactus.html"> Contact US</a></li>
+         <li> <a href="Aboutus.html"> About US </a></li>
+             <li> <a href="Paramater.html">Parameters</a></li>
+        <li> <a href="index.html">Home</a></li>       
+            </ul> </div>
+          </nav>
+   
+
+
+      <h3>FRP Level: Thailand</h3>
+     
+     <form>
+
+    
+ <div class="row">
+            <div class="col-6"> 
+                <p class="fallbackLabel">Enter the date:</p>
+      <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/> </div>
+            <div class="col-6">
+      <div class="dropdown">
+  <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">Country
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+      <option><a href="#">Cambodia</a> </option>
+      <option><a href="#">Laos</a> </option>
+    <option><a href="#">Myanmar</a></option>
+    <option> <a href="#">Thailand</a></option>
+         <option> <a href="#">Vietnam</a> </option> 
+  </ul>
+</div>
+             </div>
+             </div>
+    
+     
+   
+</form>
+
+      <h3>Fire Radiative Power</h3>
+
+
+   
+    <img src="http://wildlandfire.thairen.net.th/thai/" height= 480 width=480 id="image">
+    <img src="" id="monthimage">
+     
+
+    <p>
+        <button type="button" onclick="zoomin()"><img src="" id="image"> Zoom In</button>
+        <button type="button" onclick="zoomout()"><img src="" id="image"> Zoom Out</button>
+    </p>
+
+     <p>
+        <button type="button" onclick="previousDay()"> Previous Day</button>
+        <button type="button" onclick="nextDay()"> Next Day</button>
+    </p>
+
+    <img src="" id="imgae" width="250">
+     
+      <br></br>
+      <img scr="pminfo.jpg">
+
+<script>
+      function showImage() 
+    {
+        if(document.getElementById('current-date').value=='' || (moment(document.getElementById('current-date').value).isValid() && moment(document.getElementById('current-date').value).isAfter(moment().subtract(3, 'days')))){
+        var date = moment().subtract(3, 'days').format("yyyy-MM-DD").split('-')
+        }
+        else{
+        var date = document.getElementById('current-date').value.split('-')
+        }
+        var year = date[0]
+        var month = date[1]
+        var day = date[2]
+        var imageName = year + '-' + month + '-' + day + 'frp-laos.jpg'
+        
+        document.getElementById('image').src = 'http://wildlandfire.thairen.net.th/laos/' + imageName;
+        
+        return false;
+    }
+    
+     function zoomin(){
+        var myImg = document.getElementById('image');
+        var currWidth = myImg.clientWidth;
+        if(currWidth == 500){
+            alert("Maximum zoom-in level reached.");
+        } else{
+            myImg.style.width = (currWidth + 50) + "px";
+        } 
+    }
+    function zoomout(){
+        var myImg = document.getElementById('image');
+        var currWidth = myImg.clientWidth;
+        if(currWidth == 50){
+            alert("Maximum zoom-out level reached.");
+        } else{
+            myImg.style.width = (currWidth - 50) + "px";
+        }
+    }
+    
+    function previousDay(){
+      var date = document.getElementById('current-date').value;
+
+      if(date!=""){
+          $('#current-date').val(Date.parse(date).addDays(-1).toString("yyyy-MM-dd")).change();
+      }
+    }
+    
+    function nextDay(){
+      var date = document.getElementById('current-date').value;
+
+      if(date!=""){
+          $('#current-date').val(Date.parse(date).addDays(1).toString("yyyy-MM-dd")).change();
+      }
+    }
+    
+    
+
+</script>      
+     
+</body>
+</html>
+
