@@ -6,8 +6,9 @@ body{
 
 
 .navcontent li a{
-    color: yellow;
+    color: gold;
     font-weight: normal;
+    font-family: georgia, sans-serif;
 }
 
 ul {
@@ -20,7 +21,7 @@ ul {
 li {
   float: right;
 }
-
+ 
 li a {
   display: block;
   color: gold;
@@ -31,27 +32,87 @@ li a {
 }
 
 h4{
-    color: yellow;
+    color: gold;
 }
 
 h3{
-    color: yellow;
+    color: gold;
 }
 
 h5{
-    color: yellow;
+    color: gold;
 }
 
 .fallbackLabel{
-    color: yellow;
+    color: gold;
 }
 
 .paragraph p{
-    color: antiquewhite;
+    color: gold;
 }
 
 .container{
-    color: yellow;
+ 
+    color: gold;
+}
+
+
+
+h1{
+         
+    height:88px;
+    width:280px;
+    background: rgba(0,0,0,0.8);
+    color: gold;
+    font-family: georgia, sans-serif;
+    border-radius: 30px;
+    padding: 15px;
+    border: 5px solid rgba(255,255,255,0.7);
+  
+}
+
+input{
+    
+    border: 5px solid rgba(0,0,0,0.9);
+    border-radius: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    color: black;
+    
+}
+
+::placeholder {
+  color: grey;
+  opacity: 1; /* Firefox */
+}
+
+select {
+    width: 40%;
+    height: 80%;
+    border: 5px solid rgba(0,0,0,0.9);
+    border-radius: 20px;
+    color: grey;
+    background: rgba(255, 255, 255, 0.7);
+    color: black;
+}
+textarea{
+    width: 40%;
+    height: 80%;
+    border: 5px solid rgba(0,0,0,0.9);
+    border-radius: 20px;
+    color: black;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+}
+
+input[type=submit]
+{
+    border: 5px solid rgba(255,215,0,0.7);
+    border-radius: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-family: georgia, sans-serif;
 }
 
 .footer{
