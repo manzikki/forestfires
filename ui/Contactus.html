@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title >Forest Fire Emissions In Upper SEA</title>
+ <!-- <title >Forest Fire Emissions In Upper SEA</title>-->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -9,6 +9,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="common.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -19,18 +22,21 @@ body  {
   background-image: url("forest.jpg");
 }
 </style> 
+  <div> 
 
  <nav class= "navbar navbar-inverse">
       <ul class="nav navbar-nav navbar-center">
-          <h4><b> Forest Fire Emissions  In Upper SEA </b></h4> </ul>
+          <h4><b> Fire Emissions  In Upper SEA </b></h4> </ul>
         <div class="navcontent">
     <ul>
         <li> <a href="Contactus.html"> Contact US</a></li>
          <li> <a href="Aboutus.html"> About US </a></li>
-             <li> <a href="Paramater.html">Parameters</a></li>
+        <li> <a href="Paramater.html">Parameters</a></li>
     <li> <a href="index.html">Home</a></li>       
             </ul> </div>
-          </nav>
+ </nav>
+    </div>
+        
     
 <body>
     
@@ -46,7 +52,7 @@ body  {
     
 <br>
     
-    <h1>Contact Us:</h1>
+        <h1><b>Contact Us:</b></h1>
     <br> 
    <div class="container">
         
@@ -55,7 +61,7 @@ body  {
             
            <!-- <label for="fname">First Name</label> -->
             <div class=col-6>
-            <input type="text" id="fname" name="firstname" placeholder="Your first name..">
+            <input type="text" id="fname" name="firstname" placeholder="Your first name.." class="form-control">
 
              
         
@@ -63,7 +69,7 @@ body  {
             </div>
             <br>
             <div class = col-6>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            <input type="text" id="lname" name="lastname" placeholder="Your last name.." class="form-control">
                 
             </div>
      </div>  
@@ -73,7 +79,8 @@ body  {
             
         
             <!--<label for="country">Country</label> -->
-            <select id="country" name="country">
+        <div> 
+            <select id="country" name="country" class="form-control">
                 
                 <option value="australia">Australia</option>
                 <option value="canada">Canada</option>
@@ -81,24 +88,34 @@ body  {
                 <option value="thailand">Thailand</option>option>
                 
             </select>
-         </div>
+             </div>
+        </div>
+         
             <br>
         <div class="col-6"> 
           <!--  <label for="email"> Email:</label>-->
-           <input type="email" id="email" name="email" placeholder="Your email address..">
+           <input type="email" id="email" name="email" placeholder="Your email address.." class="form-control">
   
          </div>
           
      </div>
      <br> 
+     
            <!-- <label for="subject">Subject :</label> -->
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+     <textarea id="subject" name="subject" placeholder="Write something.." 
+              style="height:200px" class="form-control"></textarea>
 
             <br> 
-            <input type="submit" value="Submit">
-    </form>
+     
+    <button type="submit" class="btn btn-light">Submit</button>
+</form>
+       
+      
  
 </div>
+        <br>
+        
+        
         
 </center>
     </body>

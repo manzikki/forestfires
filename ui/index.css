@@ -4,14 +4,16 @@ body{
     background-size:cover;
 }
 
+
+
 .col-3{
     color: gold;
-    font-family: Georgia, serif;
+    font-family: 'montserrat', sans-serif;
 }
 
-.col-4{
+.col-4 h2{
     color: gold;
-    font-family: Georgia, serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .col-4 a:hover{
@@ -28,23 +30,24 @@ body{
 }
 .col-6{
     color: gold;
-    font-family: Georgia, serif;
+    font-family:  'montserrat', sans-serif;
 }
 
 .col-2{
     color: gold;
-    font-family: Georgia, serif;
+    font-family: 'montserrat', sans-serif;
     font-size: larger;
 
 }
 
 .col-1{
     color: gold;
-    font-family: Georgia, serif;
+    font-family: 'montserrat', sans-serif;
     font-size: 20px;
 }
 
 .resources h6{
+    font-family: 'montserrat', sans-serif;
     font-size: 20px;
     color: gold;
 }
@@ -54,6 +57,7 @@ body{
     
 }
 .resources{
+    font-family: 'montserrat', sans-serif;
     text-align: center;
 }
 

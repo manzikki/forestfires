@@ -11,12 +11,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="parameter.css">
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body> 
  <nav class= "navbar navbar-inverse nav">
      
     <ul class="nav navbar-nav navbar-center">
-        <h4><u><b> Fire Emissions  In Upper SEA </b></u></h4>
+        <h4><b> Fire Emissions  In Upper SEA </b></h4>
     
     </ul>
      
@@ -34,47 +35,13 @@
      </div>
  </nav>
     
-    
-   <!-- 
-<body>
-  <style>
-  body {text-align:center}
-    </style>
-
-  <div class="container" style="margin-top:30px">
-  <div class="row">
-    <div class="col-sm-18" style="color:white;">
-     <h3>Parameters:</h3>
-      <p>Click the link below:</p>
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-            <a class="nav-link" href="frp.html"><b>FRP</b></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pm2.5.html"><b>PM 2.5</b></a>
-        </li>
-<!--
-        <li class="nav-item">
-          <a class="nav-link" href="organiccarbon.html">Organic Carbon</a>
-        </li>
---? 
-     <li class="nav-item">
-         <a class="nav-link" href="co2.html"><b>Carbon dioxide</b></a>
-        </li>
-  </ul> 
-      
-
-</div>
-      </div>
-      </div>
-      -->
    
       <! my edit > 
 <div class = "row">
     
     <div class = "col-4"> 
      <dl class = "CD"> 
-         <dt> <h2><u style = color:gold;>Carbon Dioxide</u></h2></dt>
+         <dt> <h2><a href="https://climate.nasa.gov/vital-signs/carbon-dioxide/" data-toggle="tooltip" data-placement="top" title="Click here for more information!">Carbon Dioxide</a></h2></dt>
             <dd> <b>What is Carbon Dioxide?</b> </dd>
             <dd> Carbon Dioxide or CO2 is a greenhouse gas that is natural and harmless in small quantities, but as levels rise it can affect productivity and sleep. Most commonly produced indoors by the air we exhale, CO2 levels concentrate indoors with less ventilation. Forest fire emissions are a significant source of carbon dioxide (CO2), not only affecting its interannual variability but also biogeochemical cycles with consequences for climate. </dd>
           
@@ -83,7 +50,7 @@
     
     <div class="col-4 para">
        
-        <h1><u><strong style = color:gold;>Parameters:</strong></u></h1>
+        <h1><strong style = color:gold;>Parameters:</strong></h1>
             
        
             <ul class="nav nav-pills flex-column" >
@@ -104,7 +71,7 @@
         
     <div class = "col-4"> 
     <dl class = "FRP"> 
-        <dt> <h2><u style = color:gold;>Fire Radiative Power (FRP)</u></h2></dt>
+        <dt> <h2><a href="https://doi.org/10.1590/0102-77863220004 " data-toggle="tooltip" data-placement="top" title="Click here for more information!">Fire Radiative Power (FRP)</a> </h2></dt>
             <dd> <b>What is Fire Radiative Power?</b> </dd>
             <dd> Fire Radiative Power is the rate of emitted radiative energy by the fire at the time of the observation. The fire intensity can vary mainly in relation to the moisture content of the combustible material, the wind, air temperature, humidity and slope. Fire Radiative Power is expressed in units of power, such as Watts (W) and the unit of measurement for FRP is kg m<sup>-2</sup>. </dd>
           
@@ -115,7 +82,7 @@
       
         <div class = "col-4" >
         <dl class = "PM"> 
-            <dt> <h2><u style = color:gold;> PM 2.5 (Forest Fire) </u></h2></dt>
+            <dt> <h2><a href="https://www.bangkokpost.com/thailand/general/1887220/bushfire-sends-pm2-5-level-to-record-high" data-toggle="tooltip" data-placement="top" title="Click here for more information!"> PM 2.5 (Forest Fire)</a></h2></dt>
             <dd> <b>What is PM 2.5 and how does it get into air?</b> </dd>
             <dd> PM stands for particulate matter the term for a mixture of solid particles and liquid droplets found in the air. Some particles, such as dust, dirt, soot, or smoke, are large or dark enough to be seen with the naked eye. Others are so small they can only be detected using an electron microscope. Particle pollution includes: </dd>
             <dd> 1) PM10 : inhalable particles, with diameters that are generally 10 micrometers and smaller </dd>
@@ -132,7 +99,7 @@
            
            <dl class = "Sources"> 
                
-               <dt> <h2><u style = color:gold;> Sources</u></h2></dt>
+               <dt> <h2> Sources</h2></dt>
                
                     <dt> Carbon Dioxide </dt>
                         <dd><b>Sources:</b><a href="https://www.airthings.com/en/what-is-carbon-dioxide" > <b>Carbon Dioxide</b></a> <a href="https://www.bbc.com/news/science-environment-46212844"> <b>/Carbon Dioxide </b></a> </dd>
@@ -150,7 +117,7 @@
      
         <div class = "col-4" >
          <dl class = "DS"> 
-             <dt> <h2><u style = color:gold;> Data Source</u></h2></dt>
+             <dt> <h2> Data Source</h2></dt>
                <dd> <b>ECMWF is the European Centre for Medium-Range Weather Forecasts.</b> </dd>
             <dd> They are both a research institute and a 24/7 operational service, producing global numerical weather predictions and other data for our Member and Co-operating States and the broader community. The Centre has one of the largest supercomputer facilities and meteorological data archives in the world. Other strategic activities include delivering advanced training and assisting the WMO in implementing its programmes. They operate two services from the EU’s Copernicus Earth observation programme, the Copernicus Atmosphere Monitoring Service (CAMS) and the Copernicus Climate Change Service (C3S). They also contribute to the Copernicus Emergency Management Service (CEMS). </dd>
             
@@ -158,7 +125,11 @@
         </div>
         
     </div>
-    
+    <script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
       <! my edit >
 </body>
 </html>

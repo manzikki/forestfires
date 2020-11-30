@@ -26,20 +26,20 @@ body  {
            margin-top:8%;
            /*color:gold;*/
        
-           font-family: Georgia, serif;
+           font-family: 'montserrat', sans-serif;
         }
        
          a,u {
        
              color:gold;
-             font-family: Georgia, serif; 
+             font-family: 'montserrat', sans-serif; 
             
         }
        
-       h4,u,strong{
+       h4,strong{
            
            color:gold;
-           font-family: Georgia, serif; 
+           font-family: 'montserrat', sans-serif; 
            font-size: 40px;
        
        }
@@ -51,7 +51,7 @@ body  {
            background: rgba(0, 0, 0, 0.3);
            color: white;
            font-size: 45px;
-           font-family: Georgia, serif; 
+           font-family: 'montserrat', sans-serif; 
            margin-left:0%;
            margin-right: 0%;
            margin-top:4%;
@@ -69,13 +69,16 @@ body  {
            margin-top:8%;
       
        
-           font-family: sans-serif;
+           font-family: 'montserrat', sans-serif;
        }
        
        .navcontent li a {
            color: yellow;
            font-weight: normal;
        }
+h2{
+    font-size: 40px;
+}
 
 .navcontent ul{
     list-style-type: none;
@@ -95,4 +98,12 @@ body  {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+.navbar{
+    color: gold;
+    font-weight: normal;
+    font-family: 'montserrat', sans-serif;
+    background-color: rgba(0,0,0,0.3);
+    
 }
