@@ -47,7 +47,7 @@ body  {
         <li> <a href="Contactus.html"> Contact US</a></li>
          <li> <a href="Aboutus.html"> About US </a></li>
              <li> <a href="Paramater.html">Parameters</a></li>
-        <li> <a href="home.html">Home</a></li>       
+        <li> <a href="index.html">Home</a></li>       
             </ul> </div>
           </nav>
     
@@ -61,37 +61,37 @@ body  {
                 <p class="fallbackLabel">Enter the date:</p>
       <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/> </div>
             <div class="col-6">
-     <div class="dropdown">
-  <button class="dropbtn">Countries</button>
-  <div class="dropdown-content">
-    <a href="#">Cambodia</a>
-    <a href="#">Laos</a>
-    <a href="#">Myanmar</a>
-      <a href="frpthailand.html"> Thailand</a>
-      <a href="frpvietnam.html">Vietnam</a>
+                         <div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      Select a country
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="frpcambodia.html">Cambodia</a>
+      <a class="dropdown-item" href="frplaos.html">Laos</a>
+      <a class="dropdown-item" href="frpmyanmar.html">Myanmar</a>
+        <a class="dropdown-item" href="frpthailand.html">Thailand</a>
+        <a class="dropdown-item" href="frpvietnam.html">Vietnam</a>
+    </div>
   </div>
 </div>
+          
              </div>
-             </div>
+             
    
 </form>
-
       <h5>Fire Radiative Power</h5>
+    
 
-
-   
-    <img src="" height= 480 width=480 id="image">
+          <img src="" height= 480 width=480 id="image">
     <img src="" id="monthimage">
-     
-
-    <p>
-        <button type="button" onclick="zoomin()"><img src="" id="image"> Zoom In</button>
-        <button type="button" onclick="zoomout()"><img src="" id="image"> Zoom Out</button>
-    </p>
+    
+    
+   
 
      <p>
         <button type="button" onclick="previousDay()"> Previous Day</button>
         <button type="button" onclick="nextDay()"> Next Day</button>
+        
     </p>
 
     <img src="" id="imgae" width="250">
@@ -118,24 +118,7 @@ body  {
         return false;
     }
     
-     function zoomin(){
-        var myImg = document.getElementById('image');
-        var currWidth = myImg.clientWidth;
-        if(currWidth == 500){
-            alert("Maximum zoom-in level reached.");
-        } else{
-            myImg.style.width = (currWidth + 50) + "px";
-        } 
-    }
-    function zoomout(){
-        var myImg = document.getElementById('image');
-        var currWidth = myImg.clientWidth;
-        if(currWidth == 50){
-            alert("Maximum zoom-out level reached.");
-        } else{
-            myImg.style.width = (currWidth - 50) + "px";
-        }
-    }
+    
     
     function previousDay(){
       var date = document.getElementById('current-date').value;

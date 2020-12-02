@@ -151,6 +151,16 @@ strong{
     
 }
 
+.btn {
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+.btn:hover{
+    background-color: black;
+}
+
 .footer{
   left: 0;
   bottom: 0;
