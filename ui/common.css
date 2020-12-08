@@ -138,6 +138,13 @@ input[type=submit]
     font-family: georgia, sans-serif;
 }
 
+.button{
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
 
 strong{
     

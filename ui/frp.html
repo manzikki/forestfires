@@ -58,7 +58,7 @@ body  {
     
  <div class="row">
             <div class="col-6"> 
-                <p class="fallbackLabel">Enter the date:</p>
+              
       <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/> </div>
             <div class="col-6">
                          <div class="dropdown">
@@ -79,20 +79,16 @@ body  {
              
    
 </form>
-      <h5>Fire Radiative Power</h5>
-    
-
-          <img src="" height= 480 width=480 id="image">
+    <h5>Fire Radiative Power</h5>
+   <button type="button" onclick="previousDay()"> < </button>
+         
+      <img src="" height= 480 width=480 id="image">
+   
+     <button type="button" onclick="nextDay()"> ></button> 
     <img src="" id="monthimage">
     
-    
-   
+     
 
-     <p>
-        <button type="button" onclick="previousDay()"> Previous Day</button>
-        <button type="button" onclick="nextDay()"> Next Day</button>
-        
-    </p>
 
     <img src="" id="imgae" width="250">
      
