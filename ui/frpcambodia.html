@@ -51,27 +51,28 @@ body  {
    
 
 
-      <h3>FRP Level: Thailand</h3>
+      <h3>FRP Level: Cambodia</h3>
      
      <form>
 
     
  <div class="row">
             <div class="col-6"> 
-                <p class="fallbackLabel">Enter the date:</p>
+                
       <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/> </div>
             <div class="col-6">
       <div class="dropdown">
-  <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">Country
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-      <option><a href="#">Cambodia</a> </option>
-      <option><a href="#">Laos</a> </option>
-    <option><a href="#">Myanmar</a></option>
-    <option> <a href="#">Thailand</a></option>
-         <option> <a href="#">Vietnam</a> </option> 
-  </ul>
-</div>
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      Select a country
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="frpcambodia.html">Cambodia</a>
+      <a class="dropdown-item" href="frplaos.html">Laos</a>
+      <a class="dropdown-item" href="frpmyanmar.html">Myanmar</a>
+        <a class="dropdown-item" href="frpthailand.html">Thailand</a>
+        <a class="dropdown-item" href="frpvietnam.html">Vietnam</a>
+    </div>
+  </div>
              </div>
              </div>
     
@@ -82,24 +83,17 @@ body  {
       <h3>Fire Radiative Power</h3>
 
 
-   
+   <button type="button" onclick="previousDay()"> < </button>
     <img src="http://wildlandfire.thairen.net.th/thai/" height= 480 width=480 id="image">
-    <img src="" id="monthimage">
-     
-
-    <p>
-        <button type="button" onclick="zoomin()"><img src="" id="image"> Zoom In</button>
-        <button type="button" onclick="zoomout()"><img src="" id="image"> Zoom Out</button>
-    </p>
-
-     <p>
-        <button type="button" onclick="previousDay()"> Previous Day</button>
-        <button type="button" onclick="nextDay()"> Next Day</button>
-    </p>
+     <button type="button" onclick="nextDay()"> > </button>
+    <img src="" id="monthimage"> 
+        
+       
+    
 
     <img src="" id="imgae" width="250">
      
-      <br></br>
+      <br>
       <img scr="pminfo.jpg">
 
 <script>
