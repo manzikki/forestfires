@@ -12,7 +12,14 @@ if [ -f $year-$month.nc ]
 then
     #we got it? run the script that builds the bar charts
     Rscript month-simple.r $year-$month.nc
+    #and SEA maps
     Rscript  Extract_ECWMF_vars_SEAdaily.R $year-$month.nc
+    #and Thai/Viet FRP maps
+    Rscript Extract_ECWMF_FRP_thailanddaily.R $year-$month.nc
+    Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $year-$month.nc VNM
+    Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $year-$month.nc LAO
+    Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $year-$month.nc KHM
+    Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $year-$month.nc MMR
 else
     #the month has changed so the data is from the previous month
     echo foo > /dev/null
@@ -21,13 +28,10 @@ else
     lastfile=`ls -tr 2020-??.nc | tail -1`
     Rscript month-simple.r $lastfile
     Rscript  Extract_ECWMF_vars_SEAdaily.R $lastfile
+    Rscript Extract_ECWMF_FRP_thailanddaily.R $lastfile
+    Rscript Extract_ECWMF_FRP_Vietdaily.R $lastfile VNM
+    Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $lastfile LAO
+    Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $lastfile KHM
+    Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $lastfile MMR
 fi
-#trim images
-for i in *.jpg
-do
-    /usr/bin/convert -trim $i o.jpg
-    if [ -f o.jpg ]
-    then
-        mv o.jpg $i
-    fi
-done
+chmod +x *.jpg
