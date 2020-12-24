@@ -44,5 +44,5 @@ server.retrieve({
     "time": "00:00:00",
     "type": "fc",
     "format": "netcdf",
-    "target": monthstr+"-"+str(year)+"pm25.nc",
+    "target": monthstr+"-"+str(year)+"pm25a.nc",
 })
