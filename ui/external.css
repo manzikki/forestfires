@@ -15,6 +15,8 @@ body{
 
 h4{
     color: gold;
+    font-size: 40px;
+    font-family: 'montserrat', sans-serif;
 }
 
 
@@ -67,10 +69,32 @@ li a {
   border: 25px solid rgba(225, 215, 0, 0.9);
 }
 
+.navcontent ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navcontent li{
+    float: right;
+}
+
 .navcontent li a{
+    display: block;
+    color: gold;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar{
     color: gold;
     font-weight: normal;
-    font-family: georgia, sans-serif
+    font-family: 'montserrat', sans-serif;
+    background-color: rgba(0,0,0,0.3);
+    
 }
 
 .footer{
