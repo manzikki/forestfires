@@ -57,7 +57,15 @@ times_no <- str_replace(times_no, "-01", "")
 ylabt <- expression(paste("Tonnes per day per m"^"2"))
 fname = paste(times_no, "-wof.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire Overall Flux of Burnt Carbon", times_no), ylab=ylabt)
+
+meanc = mean(current_sum)
+meanc = round(meanc)
+tmptext = paste("Average emissions per day: ", meanc)
+print(tmptext)
+
+barplot(current_sum, names.arg=idx, main=paste("Wildfire Overall Flux of Burnt Carbon", times_no), ylab=ylabt, 
+        sub=tmptext)
+
 
 # Load current emissions: CO2
 current_emissions <- brick(woffile, varname="co2fire")
@@ -75,7 +83,13 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-co2.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide", times_no),  ylab=ylabt)
+meanc = mean(current_sum)
+meanc = round(meanc)
+tmptext = paste("Average emissions per day: ", meanc)
+print(tmptext)
+
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide", times_no),  ylab=ylabt,
+        sub=tmptext)
 
 # Load current emissions: CO
 current_emissions <- brick(woffile, varname="cofire")
@@ -93,7 +107,11 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-co.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Monoxide", times_no),  ylab=ylabt)
+meanc = mean(current_sum)
+meanc = round(meanc)
+tmptext = paste("Average emissions per day: ", meanc)
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Monoxide", times_no),  ylab=ylabt,
+        sub=tmptext)
 
 # Load current emissions: PM2.5
 current_emissions <- brick(woffile, varname="pm2p5fire")
@@ -111,7 +129,12 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-pm25.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Particulate Matter PM2.5", times_no), ylab=ylabt)
+meanc = mean(current_sum)
+meanc = round(meanc)
+tmptext = paste("Average emission per day: ", meanc)
+print(tmptext)
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Particulate Matter PM2.5", times_no), ylab=ylabt,
+        sub=tmptext)
 
 # Load current emissions: FRF
 current_emissions <- brick(woffile, varname="frpfire")
@@ -129,7 +152,12 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-frp.jpg", sep="")
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab="FRP in W/m2")
+meanc = mean(current_sum)
+meanc = round(meanc)
+tmptext = paste("Average emissions per day: ", meanc)
+print(tmptext)
+barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab="FRP in W/m2",
+        sub=tmptext)
 
 
 # Load current emissions: co2
@@ -147,8 +175,12 @@ idx <- labels_current
 current_sum <- cellStats(current, sum) * 86400 * 1E-3
 ylabt <-  expression(paste("kg m"^"-2","s"^"-1"))
 fname = paste(times_no, "-co2.jpg", sep="")
+meanc = mean(current_sum)
+meanc = round(meanc)
+tmptext = paste("Average emissions per day: ", meanc)
+print(tmptext)
 jpeg(fname)
-barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab=ylabt)
+barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab=ylabt, sub=tmptext)
 
 
 
