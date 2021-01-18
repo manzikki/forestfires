@@ -12,6 +12,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="common.css">
+    
+    <script>
+function setcurdate() {
+  var mdate = new Date();
+  mdate.setDate(mdate.getDate() - 3);
+  mon = mdate.getMonth()+1;
+  monstr = mon.toString();
+  day = mdate.getDate();
+  daystr = mdate.getDate().toString();
+  if (day < 10) { daystr = "0"+daystr; }
+  if (mon < 10) { monstr = "0"+monstr; }
+  year = mdate.getYear()+1900;
+  year = year.toString();
+  datestr = year+"-"+monstr+"-"+daystr;
+  mydatebox = document.getElementById("current-date");
+  mydatebox.value = datestr;
+}
+</script>
    <style>
   body {text-align:center}
     </style>
@@ -29,7 +47,7 @@
 
 </head>
 <body>
-<body onload="showImage()">
+<body onload=" setcurdate(); showImage()">
 <nav class= "navbar navbar-inverse">
       <ul class="nav navbar-nav navbar-center">
           <h4><b> Fire Emissions  In Upper SEA </b></h4> </ul>
@@ -60,7 +78,7 @@ body  {
     <h3><a href="https://climate.nasa.gov/vital-signs/carbon-dioxide/" data-toggle="tooltip" data-placement="top" title="Click here for more information!">Upper South East Asia Carbon Dioxide Level:</a></h3>
      
      <form>
-    <p class="fallbackLabel">Enter the date:</p>
+   
  <div class="row">
             <div class="col-6"> 
       <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/> </div>
@@ -81,22 +99,14 @@ body  {
              </div>
   
       <h5>Carbon Dioxide</h5>
-    <img src="" width=480 height=480 id="image">
+         <button type="button" onclick="previousDay()"> < </button>
+         
+      <img src="" height= 480 width=480 id="image">
+   
+     <button type="button" onclick="nextDay()"> ></button> 
     <img src="" id="monthimage">
     
-
-
-    <p>
-        <button type="button" onclick="zoomin()"><img src="" id="image"> Zoom In</button>
-        <button type="button" onclick="zoomout()"><img src="" id="image"> Zoom Out</button>
-    </p>
-
-    <p>
-        <button type="button" onclick="previousDay()"> Previous Day</button>
-        <button type="button" onclick="nextDay()"> Next Day</button>
-    </p>
-
-    
+   
 <script>
       function showImage() 
     {
