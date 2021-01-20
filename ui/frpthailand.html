@@ -97,7 +97,7 @@ body  {
       function showImage() 
     {
         if(document.getElementById('current-date').value=='' || (moment(document.getElementById('current-date').value).isValid() && moment(document.getElementById('current-date').value).isAfter(moment().subtract(3, 'days')))){
-        var date = moment().subtract(3, 'days').format("yyyy-MM-DD").split('-')
+        var date = moment().subtract(4, 'days').format("yyyy-MM-DD").split('-')
         }
         else{
         var date = document.getElementById('current-date').value.split('-')
