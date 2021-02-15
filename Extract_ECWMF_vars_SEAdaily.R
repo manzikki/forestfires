@@ -79,7 +79,7 @@ library(stringr)
 #get the parameter
 args = commandArgs(trailingOnly=TRUE)
 if (length(args) < 1) {
-  stop("Parameters needed: monthly frpfile in the form 2020-XX.nc", call.=FALSE)
+  stop("Parameters needed: monthly file in the form 2020-XX.nc", call.=FALSE)
 }
 aNCfile = args[1]
 
@@ -149,7 +149,7 @@ for (aDay in (1:aNumDay)) {
   jpeg(paste0(aFileDate , "pm25.jpg"), width = 1442 , height = 1442 , res = 200)
   PM25_labels = scalef(PM25_breaks)
 
-  draw_map_with_data("PM 2.5", expression(paste("PM 2.5 mg m"^"-2","s"^"-1")), 
+  draw_map_with_data("PM 2.5 from fires", expression(paste("PM 2.5 mg m"^"-2","s"^"-1")), 
                       aMaxP, aPM25_D, PM25_breaks, PM25_labels, aPM25_D$PM25)
 
   aMaxC = max(aCO2_D$CO2, na.rm = TRUE)
@@ -160,7 +160,7 @@ for (aDay in (1:aNumDay)) {
   CO2_labels = scalef(CO2_breaks)
 
   jpeg(paste0(aFileDate , "co2.jpg"), width = 1442 , height = 1442 , res = 200)
-  draw_map_with_data("Forest fire CO2 in Upper SEA", expression(paste("CO2 mg m"^"-2","s"^"-1")), aMaxC, aCO2_D, CO2_breaks, CO2_labels, aCO2_D$CO2)
+  draw_map_with_data("Fire CO2 in Upper SEA", expression(paste("CO2 mg m"^"-2","s"^"-1")), aMaxC, aCO2_D, CO2_breaks, CO2_labels, aCO2_D$CO2)
 
 }
 
