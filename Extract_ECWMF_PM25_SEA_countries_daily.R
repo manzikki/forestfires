@@ -1,75 +1,8 @@
 #By Dr. Praphatsorn Punsompong 2020.
 #Small adjustments by Marko Niinimaki.
-#This program gets a NetCFD file from the command line and creates maps of upper SEA for each of the
-#dates for variable pm25 that should be found in the NetCDF file.
-#It produces file: datepm25.jpg
-
-#For truncating very long label numbers
-scalef <- function(x) sprintf("%.2f", x)
-
-#Draws the maps
-draw_map_with_data <- function(title, unit, maxlim, daydata, breaks, labels, col) {
-    ThaiBound <- raster::getData(name = "GADM", country = "THA", level = 0)
-    LaoBound <- raster::getData(name = "GADM", country = "LAO", level = 0)
-    KhmBound <- raster::getData(name = "GADM", country = "KHM", level = 0)
-    VnmBound <- raster::getData(name = "GADM", country = "VNM", level = 0)
-    MyaBound <- raster::getData(name = "GADM", country = "MMR", level = 0)
-    aPlot = ggplot()+
-          geom_raster(data=daydata,aes(x,y,fill=col))+
-          scale_fill_gradient(low = "white",
-                              high = "red",
-                              na.value = NA,
-                              limits = c(0,maxlim),
-                              breaks = breaks,
-                              labels = labels) +
-          scale_x_continuous(name=expression(paste("Longitude")),
-                             limits=c(90,111),
-                             expand=c(0,0)) +
-          scale_y_continuous(name=expression(paste("Latitude")),
-                             limits=c(5,30),
-                             expand=c(0,0)) +
-          geom_polygon(data=ThaiBound,
-                       aes(x=long, y=lat, group=group),
-                       fill=NA,
-                       color="black",
-                       size=0.1)+
-          geom_polygon(data=LaoBound,
-                       aes(x=long, y=lat, group=group),
-                       fill=NA,
-                       color="black",
-                       size=0.1)+
-          geom_polygon(data=MyaBound,
-                       aes(x=long, y=lat, group=group),
-                       fill=NA,
-                       color="black",
-                       size=0.1)+
-          geom_polygon(data=KhmBound,
-                       aes(x=long, y=lat, group=group),
-                       fill=NA,
-                       color="black",
-                       size=0.1)+
-          geom_polygon(data=KhmBound,
-                       aes(x=long, y=lat, group=group),
-                       fill=NA,
-                       color="black",
-                       size=0.1)+
-          geom_polygon(data=VnmBound,
-                       aes(x=long, y=lat, group=group),
-                       fill=NA,
-                       color="black",
-                       size=0.1)+
-          ggtitle(title,
-                  subtitle = paste0("Date : ", aMapDate))+
-          labs(fill = unit)+
-          theme(panel.ontop=FALSE,
-                panel.background=element_blank(),
-                panel.border = element_rect(colour = "black", fill=NA, size=0.1),
-                legend.title = element_text(color = "black", size = 10)) +
-          coord_equal()
-          print(aPlot)
-          dev.off()
-}
-
+#This program gets a NetCFD file from the command line and creates PM25 maps of the given country for each of the
+#dates.
+#Countries supported: THA, LAO, KHM, MMR, VNM
 library(ncdf4) 
 library(raster) 
 library(rgdal) 
@@ -78,66 +11,110 @@ library(stringr)
 
 #get the parameter
 args = commandArgs(trailingOnly=TRUE)
-if (length(args) < 1) {
-  stop("Parameters needed: monthly file in the form 2020-XXpm25.nc", call.=FALSE)
+if (length(args) < 2) {
+  stop("Parameters needed: 1: monthly PM25 in the form 2020-XX.nc 2: country ISO3", call.=FALSE)
 }
 aNCfile = args[1]
-
-#read date from filename
+aISO3 = args[2]
+afileE = "pm25-viet.jpg"
+#get the date from the filename
 aDataDate = str_replace(aNCfile, ".nc", "")
 
-#upper South East Asia is here
-seabox <- as(raster::extent(89.25,110.38,1.89,28.84), "SpatialPolygons")
+#Vietnam
+longlimits = c(102,110)
+latlimits = c(5,25)
+
+if (aISO3 == "LAO") {
+longlimits = c(100,108)
+latlimits = c(13,24)
+afileE = "pm25-laos.jpg"
+}
+if (aISO3 == "KHM") {
+longlimits = c(102,108)
+latlimits = c(10,15)
+afileE = "pm25-camb.jpg"
+}
+if (aISO3 == "THA") {
+longlimits = c(97,106)
+latlimits = c(5,21)
+afileE = "pm25-thai.jpg"
+}
+if (aISO3 == "MMR") {
+longlimits = c(92,102)
+latlimits = c(9,30)
+afileE = "pm25-myan.jpg"
+}
+# Get country administrative boundary
+CountryBound <- raster::getData(name = "GADM", country = aISO3, level = 0)
+
+crs(CountryBound) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0" 
+aTHext = extent(CountryBound)
 
 #extraction
-aPM25_data = brick(aNCfile, var="pm2p5")
-#dates
-tatt = attributes(aPM25_data)[2]
-firstdate = names(tatt$data)[1]
-print(firstdate)
-myyear = substr(firstdate, 2, 5)
-print(myyear)
-mymon = substr(firstdate, 7, 8)
-print(mymon)
+#PM25_data = brick(paste0(ws,aNCfile), var="pm2p5fire")
+aPM25_data = brick(aNCfile, var="pm2p5fire")
 
 crs(aPM25_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 
-aPM25_SEA = mask(aPM25_data,seabox)
-aPM25_SEAmg = aPM25_SEA * 1000000000 #mg/m^2
 
-#plot daily maps
-aNumDay = nlayers(aPM25_SEA) #number of days in Month
+aPM25_TH = mask(aPM25_data,CountryBound)
+
+#plot PM25 map
+aNumDay = nlayers(aPM25_TH) #number of day in Month
 
 for (aDay in (1:aNumDay)) {
   aDate = ifelse(aDay < 10,paste0("0",aDay),aDay)
-  aMapDate = paste0(myyear,".",mymon,".",aDate)
-  aFileDate = paste0(myyear,"-",mymon,"-",aDate)
-  #print(aMapDate)
-  print(aFileDate)
+  aMapDate = paste0(aDataDate,".",aDate)
+  aMapDate = str_replace(aMapDate,"-",".")
+  print(aMapDate)
+  aFileDate = paste0(aDataDate,"-",aDate)
 
-  atR = subset(aPM25_SEAmg,aDay)
-  aPM25_D = as.data.frame(atR, xy = TRUE)
+  atP = subset(aPM25_TH,aDay)
+  aPM25_D = as.data.frame(atP, xy = TRUE)
 
   names(aPM25_D)[3]="PM25"
 
   summary(aPM25_D)
 
-  #print(FRP_breaks)
-
-  aMaxP = max(aPM25_D$PM25, na.rm = TRUE)
-  #print("Max PM2.5")
-  #print(aMaxP) #3.841185e-09
-  #aMaxP = ifelse(aMaxP < 1,1,aMaxP)
-  #these breaks should be hardcoded for consistency
-  PM25_breaks = seq(0,aMaxP,length.out=5)
-
-  jpeg(paste0(aFileDate , "pm25a.jpg"), width = 1442 , height = 1442 , res = 200)
-  PM25_labels = scalef(PM25_breaks)
-
-  draw_map_with_data("PM 2.5 emissions in general", expression(paste("PM 2.5 mg m"^"-2","s"^"-1")), 
-                      aMaxP, aPM25_D, PM25_breaks, PM25_labels, aPM25_D$PM25)
-
-
+  aPM25Max = max(aPM25_D$PM25, na.rm = TRUE)
+  aPM25Max = ifelse(aPM25Max < 1,1,aPM25Max)
+  
+  fname = paste0(aFileDate , afileE)
+  if (!file.exists(fname)) {
+      jpeg(fname, width = 1442 , height = 1442 , res = 200)
+      #png(paste0("THFRP." , aMapDate , ".png"), width = 2018 , height = 1442 , res = 200)
+  
+      aPlot = ggplot()+
+          geom_raster(data=aPM25_D,aes(x,y,fill=PM25))+
+          scale_fill_gradient(low = "white",
+                              high = "red", 
+                              na.value = NA,
+                              limits = c(0,aPM25Max)) +
+                              #breaks = FRP_breaks, 
+                              #labels = FRP_breaks) + 
+          scale_x_continuous(name=expression(paste("Longitude")),
+                             limits=longlimits,
+                             expand=c(0,0)) +
+          scale_y_continuous(name=expression(paste("Latitude")),
+                             limits=latlimits,
+                             expand=c(0,0)) +
+          geom_polygon(data=CountryBound, 
+                       aes(x=long, y=lat, group=group), 
+                       fill=NA,
+                       color="black", 
+                       size=0.1)+
+          ggtitle("PM 2.5",
+                  subtitle = paste0("Date : ", aMapDate))+
+          labs(fill = "PM25")+
+          theme(panel.ontop=FALSE, 
+                panel.background=element_blank(),
+                panel.border = element_rect(colour = "black", fill=NA, size=0.1),
+                legend.title = element_text(color = "black", size = 10)) + 
+          coord_equal() 
+  
+      print(aPlot)
+      dev.off()
+   }
 }
 
 
