@@ -13,6 +13,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
 
  <link rel="stylesheet" href="common.css">
+    
+
   <style>
   body {text-align:center}
     </style>
@@ -25,10 +27,26 @@
         vertical-align: middle;
     }
     </style>
-  
+  <script>
+function setcurdate() {
+  var mdate = new Date();
+  mdate.setDate(mdate.getDate() - 4);
+  mon = mdate.getMonth()+1;
+  monstr = mon.toString();
+  day = mdate.getDate();
+  daystr = mdate.getDate().toString();
+  if (day < 10) { daystr = "0"+daystr; }
+  if (mon < 10) { monstr = "0"+monstr; }
+  year = mdate.getYear()+1900;
+  year = year.toString();
+  datestr = year+"-"+monstr+"-"+daystr;
+  mydatebox = document.getElementById("current-date");
+  mydatebox.value = datestr;
+}
+</script>
 </head>
 <body>
-<body onload="showImage()">
+<body onload= "setcurdate(); showImage()">
 
 
 <style>
