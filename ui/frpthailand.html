@@ -25,10 +25,26 @@
         vertical-align: middle;
     }
     </style>
-  
+  <script>
+function setcurdate() {
+  var mdate = new Date();
+  mdate.setDate(mdate.getDate() - 4);
+  mon = mdate.getMonth()+1;
+  monstr = mon.toString();
+  day = mdate.getDate();
+  daystr = mdate.getDate().toString();
+  if (day < 10) { daystr = "0"+daystr; }
+  if (mon < 10) { monstr = "0"+monstr; }
+  year = mdate.getYear()+1900;
+  year = year.toString();
+  datestr = year+"-"+monstr+"-"+daystr;
+  mydatebox = document.getElementById("current-date");
+  mydatebox.value = datestr;
+}
+</script>
 </head>
 <body>
-<body onload="showImage()">
+<body onload="setcurdate(); showImage()">
 
 
 <style>
