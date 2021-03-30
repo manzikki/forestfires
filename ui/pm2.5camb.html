@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> Fire Emission In Upper SEA</title>
+  <title>Fire Emissions In Upper SEA</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -10,27 +10,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="dropdown.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
 
-<script>
-function setcurdate() {
-  var mdate = new Date();
-  mdate.setDate(mdate.getDate() - 3);
-  mon = mdate.getMonth()+1;
-  monstr = mon.toString();
-  day = mdate.getDate();
-  daystr = mdate.getDate().toString();
-  if (day < 10) { daystr = "0"+daystr; }
-  if (mon < 10) { monstr = "0"+monstr; }
-  year = mdate.getYear()+1900;
-  year = year.toString();
-  datestr = year+"-"+monstr+"-"+daystr;
-  mydatebox = document.getElementById("current-date");
-  mydatebox.value = datestr;
-}
-</script>
+ <link rel="stylesheet" href="common.css">
+    
 
   <style>
   body {text-align:center}
@@ -44,22 +27,34 @@ function setcurdate() {
         vertical-align: middle;
     }
     </style>
-    
-    <style>
+  <script>
+function setcurdate() {
+  var mdate = new Date();
+  mdate.setDate(mdate.getDate() - 4);
+  mon = mdate.getMonth()+1;
+  monstr = mon.toString();
+  day = mdate.getDate();
+  daystr = mdate.getDate().toString();
+  if (day < 10) { daystr = "0"+daystr; }
+  if (mon < 10) { monstr = "0"+monstr; }
+  year = mdate.getYear()+1900;
+  year = year.toString();
+  datestr = year+"-"+monstr+"-"+daystr;
+  mydatebox = document.getElementById("current-date");
+  mydatebox.value = datestr;
+}
+</script>
+</head>
+<body>
+<body onload= "setcurdate(); showImage()">
+
+
+<style>
 body  {
   background-image: url("forest.jpg");
 }
-        a{
-            color:gold;
-        }
 </style> 
 
-</head>
-<body>
-<body onload="setcurdate(); showImage()">
-
-
-<div class="backg">
 <nav class= "navbar navbar-inverse">
       <ul class="nav navbar-nav navbar-center">
           <h4><b> Fire Emissions  In Upper SEA </b></h4> </ul>
@@ -72,23 +67,22 @@ body  {
             </ul> </div>
           </nav>
    
-      
-    <h3><b>Upper South East Asia Wildfire Flux PM 2.5 Level</b></h3>
-    
-    
-    <p style = "font-size: 13px; "> <a href=" https://sites.google.com/view/forestfirenews/what-is" data-placement="top" title="Click here for more information!">What is PM 2.5?</a></p>
-    
-    
-    
+
+
+      <h3>PM 2.5 Level: Cambodia</h3>
      
      <form>
-        <div class="row">
+
+    
+ <div class="row">
             <div class="col-6"> 
+               
       <input type="date" id='current-date' name="current-date" value=""  onchange="return showImage()"/> </div>
             <div class="col-6">
-        <div class="dropdown">
+     
+   <div class="dropdown">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-     Select a country
+      Select a country
     </button>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="pm2.5camb.html">Cambodia</a>
@@ -99,32 +93,32 @@ body  {
     </div>
   </div>
 </div>
-          
              </div>
-             
-   
-</form>
-    <h5>PM 2.5</h5>
-   <button type="button" onclick="previousDay()"> < </button>
-         
-      <img src="" height= 480 width=480 id="image">
-   
-     <button type="button" onclick="nextDay()"> ></button> 
-    <img src="" id="monthimage">
+            
     
      
+   
+</form>
+
+      <h3>PM 2.5</h3>
+
+
+   <button type="button" onclick="previousDay()"> < </button>
+    <img src="http://wildlandfire.thairen.net.th/thai/" height= 480 width=480 id="image">
+     <button type="button" onclick="nextDay()"> > </button>
+    <img src="" id="monthimage">
 
 
     <img src="" id="imgae" width="250">
      
       <br>
       <img scr="pminfo.jpg">
-      <script>
-     
-    function showImage() 
+
+<script>
+      function showImage() 
     {
         if(document.getElementById('current-date').value=='' || (moment(document.getElementById('current-date').value).isValid() && moment(document.getElementById('current-date').value).isAfter(moment().subtract(3, 'days')))){
-        var date = moment().subtract(3, 'days').format("yyyy-MM-DD").split('-')
+        var date = moment().subtract(4, 'days').format("yyyy-MM-DD").split('-')
         }
         else{
         var date = document.getElementById('current-date').value.split('-')
@@ -132,10 +126,10 @@ body  {
         var year = date[0]
         var month = date[1]
         var day = date[2]
-        var imageName = year + '-' + month + '-' + day+'pm25.jpg'
-        var monthimageName= year + '-' + month + '-' +'pm25.jpg'
-        document.getElementById('image').src = 'http://wildlandfire.thairen.net.th/wfsru/' + imageName;
-        document.getElementById('monthimage').src= 'http://wildlandfire.thairen.net.th/month/' + monthimageName;
+        var imageName = year + '-' + month + '-' + day + 'pm25-camb.jpg'
+        
+        document.getElementById('image').src = 'http://wildlandfire.thairen.net.th/camb/' + imageName;
+        
         return false;
     }
     
@@ -176,8 +170,8 @@ body  {
     
     
 
-</script>  
-        
+</script>      
+     
 </body>
 </html>
 
