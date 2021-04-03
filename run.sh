@@ -23,8 +23,12 @@ then
     Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $year-$month.nc LAO
     Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $year-$month.nc KHM
     Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $year-$month.nc MMR
-    #exprimental: Thai PM25 maps
+    #exprimental: PM25 maps
     Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $year-$month.nc THA
+    Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $year-$month.nc VNM
+    Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $year-$month.nc LAO
+    Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $year-$month.nc KHM
+    Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $year-$month.nc MMR
 else
     #the month has changed so the data is from the previous month
     echo foo > /dev/null
@@ -38,7 +42,11 @@ else
     Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $lastfile LAO
     Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $lastfile KHM
     Rscript Extract_ECWMF_FRP_SEA_countries_daily.R $lastfile MMR
-    #exprimental: Thai PM25 maps
+    #exprimental: PM25 maps
     Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $lastfile THA
+    Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $lastfile VNM
+    Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $lastfile.nc LAO
+    Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $lastfile.nc KHM
+    Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $lastfile.nc MMR
 fi
 chmod +x *.jpg

@@ -77,7 +77,8 @@ for (aDay in (1:aNumDay)) {
   summary(aPM25_D)
 
   aPM25Max = max(aPM25_D$PM25, na.rm = TRUE)
-  aPM25Max = ifelse(aPM25Max < 1,1,aPM25Max)
+  #print(aPM25Max)
+  #aPM25Max = ifelse(aPM25Max < 1,1,aPM25Max)
   
   fname = paste0(aFileDate , afileE)
   if (!file.exists(fname)) {

@@ -60,7 +60,7 @@ jpeg(fname)
 
 meanc = mean(current_sum)
 meanc = round(meanc)
-tmptext = paste("Average emissions per day: ", meanc)
+tmptext = paste("Average burnt carbon emissions per day: ", meanc)
 print(tmptext)
 
 barplot(current_sum, names.arg=idx, main=paste("Wildfire Overall Flux of Burnt Carbon", times_no), ylab=ylabt, 
@@ -85,7 +85,7 @@ fname = paste(times_no, "-co2.jpg", sep="")
 jpeg(fname)
 meanc = mean(current_sum)
 meanc = round(meanc)
-tmptext = paste("Average emissions per day: ", meanc)
+tmptext = paste("Average fire CO2 emissions per day: ", meanc)
 print(tmptext)
 
 barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide", times_no),  ylab=ylabt,
@@ -109,7 +109,7 @@ fname = paste(times_no, "-co.jpg", sep="")
 jpeg(fname)
 meanc = mean(current_sum)
 meanc = round(meanc)
-tmptext = paste("Average emissions per day: ", meanc)
+tmptext = paste("Average fire carbon emissions per day: ", meanc)
 barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Monoxide", times_no),  ylab=ylabt,
         sub=tmptext)
 
@@ -131,7 +131,7 @@ fname = paste(times_no, "-pm25.jpg", sep="")
 jpeg(fname)
 meanc = mean(current_sum)
 meanc = round(meanc)
-tmptext = paste("Average emission per day: ", meanc)
+tmptext = paste("Average fire PM2.5 emissions per day: ", meanc)
 print(tmptext)
 barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Particulate Matter PM2.5", times_no), ylab=ylabt,
         sub=tmptext)
@@ -154,7 +154,7 @@ fname = paste(times_no, "-frp.jpg", sep="")
 jpeg(fname)
 meanc = mean(current_sum)
 meanc = round(meanc)
-tmptext = paste("Average emissions per day: ", meanc)
+tmptext = paste("Average FRP per day: ", meanc)
 print(tmptext)
 barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab="FRP in W/m2",
         sub=tmptext)

@@ -53,13 +53,13 @@ aTHext = extent(CountryBound)
 #extraction
 #PM25_data = brick(paste0(ws,aNCfile), var="pm2p5fire")
 aFRP_data = brick(aNCfile, var="frpfire")
-aPM25_data = brick(aNCfile, var="pm2p5fire")
+#aPM25_data = brick(aNCfile, var="pm2p5fire")
 
-crs(aPM25_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
+#crs(aPM25_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 crs(aFRP_data) = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 
 
-aPM25_TH = mask(aPM25_data,CountryBound)
+#aPM25_TH = mask(aPM25_data,CountryBound)
 aFRP_TH = mask(aFRP_data,CountryBound)
 
 #plot FRP map
@@ -75,21 +75,21 @@ for (aDay in (1:aNumDay)) {
   atR = subset(aFRP_TH,aDay) #extract time:day in nc data
   aFRP_D = as.data.frame(atR, xy = TRUE) #change raster to dataframe
   
-  atP = subset(aPM25_TH,aDay)
-  aPM25_D = as.data.frame(atP, xy = TRUE)
+#  atP = subset(aPM25_TH,aDay)
+#  aPM25_D = as.data.frame(atP, xy = TRUE)
 
   names(aFRP_D)[3]="FRP"
-  names(aPM25_D)[3]="PM25"
+#  names(aPM25_D)[3]="PM25"
 
   summary(aFRP_D)
-  summary(aPM25_D)
+  #summary(aPM25_D)
 
   aMax = max(aFRP_D$FRP, na.rm = TRUE)
   aMax = ifelse(aMax < 1,1,aMax)
   FRP_breaks = seq(0,aMax,0.2)
   
-  aPM25Max = max(aPM25_D$PM25, na.rm = TRUE)
-  aPM25Max = ifelse(aPM25Max < 1,1,aPM25Max)
+#  aPM25Max = max(aPM25_D$PM25, na.rm = TRUE)
+#  aPM25Max = ifelse(aPM25Max < 1,1,aPM25Max)
   
   fname = paste0(aFileDate , afileE)
   if (!file.exists(fname)) {
