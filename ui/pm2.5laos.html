@@ -27,22 +27,56 @@
         vertical-align: middle;
     }
     </style>
-  <script>
-function setcurdate() {
+ <script>
+function file_exists(urlToFile) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+     
+    if (xhr.status == "404") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function getmatch() {
+//finds what kind of date matches the most recent file
   var mdate = new Date();
-  mdate.setDate(mdate.getDate() - 4);
-  mon = mdate.getMonth()+1;
-  monstr = mon.toString();
-  day = mdate.getDate();
-  daystr = mdate.getDate().toString();
-  if (day < 10) { daystr = "0"+daystr; }
-  if (mon < 10) { monstr = "0"+monstr; }
-  year = mdate.getYear()+1900;
-  year = year.toString();
-  datestr = year+"-"+monstr+"-"+daystr;
+  days_back = 0;
+  origdatestr = ""; //return this if there are no matching files
+  while (1) {
+    mdate.setDate(mdate.getDate() - 1);
+    mon = mdate.getMonth()+1;
+    monstr = mon.toString();
+    day = mdate.getDate();
+    daystr = mdate.getDate().toString();
+    if (day < 10) { daystr = "0"+daystr; }
+    if (mon < 10) { monstr = "0"+monstr; }
+    year = mdate.getYear()+1900;
+    year = year.toString();
+    datestr = year+"-"+monstr+"-"+daystr;
+    if (days_back == 1) { origdatestr = datestr; }
+    fname = "http://wildlandfire.thairen.net.th/camb/"+datestr+"pm25-laos.jpg";
+    if (file_exists(fname)) {
+        //alert(fname+" ok");
+        return datestr;
+    } else { // alert(fname+" not ok"); 
+    }
+    days_back = days_back + 1;
+    if (days_back > 10) {
+        //get out
+        return origdatestr;
+    }
+  }
+}
+
+function setcurdate() {
+  datestr = getmatch();
   mydatebox = document.getElementById("current-date");
   mydatebox.value = datestr;
 }
+
 </script>
 </head>
 <body>
@@ -115,14 +149,10 @@ body  {
       <img scr="pminfo.jpg">
 
 <script>
-      function showImage() 
+      
+       function showImage() 
     {
-        if(document.getElementById('current-date').value=='' || (moment(document.getElementById('current-date').value).isValid() && moment(document.getElementById('current-date').value).isAfter(moment().subtract(3, 'days')))){
-        var date = moment().subtract(4, 'days').format("yyyy-MM-DD").split('-')
-        }
-        else{
         var date = document.getElementById('current-date').value.split('-')
-        }
         var year = date[0]
         var month = date[1]
         var day = date[2]
@@ -133,24 +163,7 @@ body  {
         return false;
     }
     
-     function zoomin(){
-        var myImg = document.getElementById('image');
-        var currWidth = myImg.clientWidth;
-        if(currWidth == 500){
-            alert("Maximum zoom-in level reached.");
-        } else{
-            myImg.style.width = (currWidth + 50) + "px";
-        } 
-    }
-    function zoomout(){
-        var myImg = document.getElementById('image');
-        var currWidth = myImg.clientWidth;
-        if(currWidth == 50){
-            alert("Maximum zoom-out level reached.");
-        } else{
-            myImg.style.width = (currWidth - 50) + "px";
-        }
-    }
+     
     
     function previousDay(){
       var date = document.getElementById('current-date').value;
@@ -167,6 +180,7 @@ body  {
           $('#current-date').val(Date.parse(date).addDays(1).toString("yyyy-MM-dd")).change();
       }
     }
+    
     
     
 

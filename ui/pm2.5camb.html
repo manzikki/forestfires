@@ -162,25 +162,7 @@ body  {
         return false;
     }
     
-     function zoomin(){
-        var myImg = document.getElementById('image');
-        var currWidth = myImg.clientWidth;
-        if(currWidth == 500){
-            alert("Maximum zoom-in level reached.");
-        } else{
-            myImg.style.width = (currWidth + 50) + "px";
-        } 
-    }
-    function zoomout(){
-        var myImg = document.getElementById('image');
-        var currWidth = myImg.clientWidth;
-        if(currWidth == 50){
-            alert("Maximum zoom-out level reached.");
-        } else{
-            myImg.style.width = (currWidth - 50) + "px";
-        }
-    }
-    
+   
     function previousDay(){
       var date = document.getElementById('current-date').value;
 
