@@ -1,6 +1,8 @@
-# Creates sevaral barchart visualizations of monthly data. Use month.py to get the data.
+# Creates barchart visualizations of monthly data for upper SEA. Use month.py to get the data.
 # Usage: Rscript month-simple.r monthfile.nc
 # Output: jpg files year-month-variable.jpg
+# Example: Rscript month-simple.r 2021-05.nc
+# produces: 2021-05-frp.jpg 2021-05-pm25.jpg 2021-05-co.jpg 2021-05-co2.jpg 2021-05-wof.jpg
 # Based on ECMWF examples, only small tuning by Marko Niinimaki niinimakim@webster.ac.th 2020
 # install.packages(c("raster", "mapview"))
 
