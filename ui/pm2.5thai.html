@@ -57,7 +57,7 @@ function getmatch() {
     year = year.toString();
     datestr = year+"-"+monstr+"-"+daystr;
     if (days_back == 1) { origdatestr = datestr; }
-    fname = "http://wildlandfire.thairen.net.th/camb/"+datestr+"pm25-thai.jpg";
+    fname = "http://wildlandfire.thairen.net.th/thai/"+datestr+"pm25-thai.jpg";
     if (file_exists(fname)) {
         //alert(fname+" ok");
         return datestr;
@@ -77,6 +77,29 @@ function setcurdate() {
   mydatebox.value = datestr;
 }
 
+function getdateboxmonth() {
+   mydatebox = document.getElementById("current-date");
+   var d = new Date();
+   d = Date.parse(mydatebox.value);
+   m = d.getMonth();
+   if (m == 0) return "jan";
+   if (m == 1) return "feb";
+   if (m == 2) return "mar";
+   if (m == 3) return "apr";
+   if (m == 4) return "may";
+   if (m == 5) return "jun";
+   if (m == 6) return "jul";
+   if (m == 7) return "aug";
+   if (m == 8) return "sep";
+   if (m == 9) return "oct";
+   if (m == 10) return "nov";
+   if (m == 10) return "dec";
+}
+
+function putreflink() {
+   var s = "../month-graphs/" + getdateboxmonth() + ".pm25.csv.jpg";
+   document.getElementById("changeme").href = s;
+}
 </script>
 </head>
 <body>
@@ -116,14 +139,14 @@ body  {
      
    <div class="dropdown">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      Select a country
+     Select a country
     </button>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="pm2.5camb.html">Cambodia</a>
       <a class="dropdown-item" href="pm2.5laos.html">Laos</a>
       <a class="dropdown-item" href="pm2.5myan.html">Myanmar</a>
-        <a class="dropdown-item" href="pm2.5thai.html">Thailand</a>
-        <a class="dropdown-item" href="pm2.5viet.html">Vietnam</a>
+      <a class="dropdown-item" href="pm2.5thai.html">Thailand</a>
+      <a class="dropdown-item" href="pm2.5viet.html">Vietnam</a>
     </div>
   </div>
 </div>
@@ -133,8 +156,7 @@ body  {
      
    
 </form>
-
-      <h3>PM 2.5</h3>
+      <h5>PM 2.5 from fires</h5>
 
 
    <button type="button" onclick="previousDay()"> < </button>
@@ -156,9 +178,9 @@ body  {
         var month = date[1]
         var day = date[2]
         var imageName = year + '-' + month + '-' + day + 'pm25-thai.jpg'
-        
+        var monthimageName = year + '-' + month + '-' +'pm25.jpg'
         document.getElementById('image').src = 'http://wildlandfire.thairen.net.th/thai/' + imageName;
-        
+        document.getElementById('monthimage').src= 'http://wildlandfire.thairen.net.th/country-bargraph/THA-' + monthimageName;
         return false;
     }
     
