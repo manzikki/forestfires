@@ -45,7 +45,7 @@ if (aISO3 == "KHM") {
     country = camb
 }
 if (aISO3 == "MMR") {
-    country = myanmar
+    country = myan
 }
 
 # Load the climatology
@@ -82,8 +82,8 @@ meanc = mean(current_sum)
 meanc = round(meanc)
 maxc  = max(current_sum)
 maxc = round(maxc)
-tmptext = paste("Average burnt carbon emissions per day:", meanc, "max:", maxc)
-print(tmptext)
+tmptext = paste(aISO3,"Average burnt carbon emissions per day:", meanc, "max:", maxc)
+print(paste(times_no, tmptext))
 
 barplot(current_sum, names.arg=idx, main=paste(aISO3, "Wildfire Overall Flux of Burnt Carbon", times_no), ylab=ylabt, 
         sub=tmptext)
@@ -109,8 +109,8 @@ meanc = mean(current_sum)
 meanc = round(meanc)
 maxc  = max(current_sum)
 maxc = round(maxc)
-tmptext = paste("Average fire CO2 emissions per day:", meanc, "max:", maxc)
-print(tmptext)
+tmptext = paste(aISO3, "Average fire CO2 emissions per day:", meanc, "max:", maxc)
+print(paste(times_no, tmptext))
 
 barplot(current_sum, names.arg=idx, main=paste(aISO3, "Wildfire flux of Carbon Dioxide", times_no),  ylab=ylabt,
         sub=tmptext)
@@ -135,7 +135,7 @@ meanc = mean(current_sum)
 meanc = round(meanc)
 maxc  = max(current_sum)
 maxc = round(maxc)
-tmptext = paste("Average fire carbon emissions per day:", meanc, "max:", maxc)
+tmptext = paste(aISO3,"Average fire carbon emissions per day:", meanc, "max:", maxc)
 barplot(current_sum, names.arg=idx, main=paste(aISO3, "Wildfire flux of Carbon Monoxide", times_no),  ylab=ylabt,
         sub=tmptext)
 
@@ -159,8 +159,8 @@ meanc = mean(current_sum)
 meanc = round(meanc)
 maxc  = max(current_sum)
 maxc = round(maxc)
-tmptext = paste("Average fire PM2.5 emissions per day:", meanc, "max:", maxc)
-print(tmptext)
+tmptext = paste(aISO3,"Average fire PM2.5 emissions per day:", meanc, "max:", maxc)
+print(paste(times_no, tmptext))
 barplot(current_sum, names.arg=idx, ylim=c(0, 2000), main=paste(aISO3, "Wildfire flux of Particulate Matter PM2.5", times_no), ylab=ylabt,
         sub=tmptext)
 
@@ -184,8 +184,8 @@ meanc = mean(current_sum)
 meanc = round(meanc)
 maxc  = max(current_sum)
 maxc = round(maxc)
-tmptext = paste("Average FRP per day:", meanc, "max:", maxc)
-print(tmptext)
+tmptext = paste(aISO3,"Average FRP per day:", meanc, "max:", maxc)
+print(paste(times_no, tmptext))
 barplot(current_sum, names.arg=idx, main=paste(aISO3, "Fire Radiative Power", times_no), ylab="FRP in W/m2",
         sub=tmptext)
 
@@ -209,8 +209,8 @@ meanc = mean(current_sum)
 meanc = round(meanc)
 maxc  = max(current_sum)
 maxc = round(maxc)
-tmptext = paste("Average emissions per day:", meanc, "max:", maxc)
-print(tmptext)
+tmptext = paste(aISO3,"Average emissions per day:", meanc, "max:", maxc)
+print(paste(times_no, tmptext))
 jpeg(fname)
 barplot(current_sum, names.arg=idx, main=paste(aISO3,"CO2", times_no), ylab=ylabt, sub=tmptext)
 
