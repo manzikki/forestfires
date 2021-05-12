@@ -10,5 +10,6 @@ if (length(args) < 2) {
 mytitle = args[2]
 mymon.data <- read.csv(file=args[1])
 jpeg(paste0(args[1],".jpg"))
-barplot(height = mymon.data$Value, names.arg = mymon.data$Year)
+xx = barplot(ylim=c(0, 2000), height = mymon.data$Value, width = 0.85, names.arg = mymon.data$Year)
 title(mytitle)
+text(x=xx, y=50, label = mymon.data$Value, cex=1, pos=3) 
