@@ -4,13 +4,13 @@ do
   echo "Year, Value" > tha$i.csv
   cat allc.txt | grep THA | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> tha$i.csv
   echo "Year, Value" > lao$i.csv
-  cat allc.txt | grep LAO | grep PM2.5 | grep '\-01' | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> lao$i.csv
+  cat allc.txt | grep LAO | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> lao$i.csv
   echo "Year, Value" > khm$i.csv
-  cat allc.txt | grep KHM | grep PM2.5 | grep '\-01' | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> khm$i.csv
+  cat allc.txt | grep KHM | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> khm$i.csv
   echo "Year, Value" > mmr$i.csv
-  cat allc.txt | grep MMR | grep PM2.5 | grep '\-01' | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> mmr$i.csv
+  cat allc.txt | grep MMR | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> mmr$i.csv
   echo "Year, Value" > vnm$i.csv
-  cat allc.txt | grep VNM | grep PM2.5 | grep '\-01' | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> vnm$i.csv
+  cat allc.txt | grep VNM | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> vnm$i.csv
   mname="Jan"
   if [ $i -eq 02 ]
   then
