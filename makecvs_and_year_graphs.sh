@@ -11,6 +11,8 @@ do
   cat allc.txt | grep MMR | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> mmr$i.csv
   echo "Year, Value" > vnm$i.csv
   cat allc.txt | grep VNM | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> vnm$i.csv
+  echo "Year, Value" > sea$i.csv
+  cat allc.txt | grep SEA | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> sea$i.csv
   mname="Jan"
   if [ $i -eq 02 ]
   then
@@ -61,4 +63,5 @@ do
   Rscript year_bar_charts.r khm$i.csv "Cambodia $mname AVG PM2.5"
   Rscript year_bar_charts.r mmr$i.csv "Myanmar $mname AVG PM2.5"
   Rscript year_bar_charts.r vnm$i.csv "Vietnam $mname AVG PM2.5"
+  Rscript year_bar_charts.r sea$i.csv "Upper_SEA $mname AVG PM2.5"
 done

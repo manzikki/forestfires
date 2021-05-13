@@ -1,5 +1,6 @@
 # Creates barchart visualizations of monthly data for upper SEA countries. Use month.py to get the data.
 # Usage: Rscript month-simple.r monthfile.nc ISO3
+# With SEA as ISO3 produces the barchart for the all of upper SEA.
 # Output: jpg files year-month-variable.jpg
 # Example: Rscript month-simple.r 2021-05.nc THA
 # produces: THA-2021-05-frp.jpg THA-2021-05-pm25.jpg THA-2021-05-co.jpg THA-2021-05-co2.jpg THA-2021-05-wof.jpg
@@ -20,7 +21,7 @@ if (length(args) < 2) {
 
 woffile = args[1]
 aISO3 = args[2]
-if (!(aISO3 %in% c('THA', 'LAO', 'KHM', 'MMR', 'VNM'))) {
+if (!(aISO3 %in% c('SEA', 'THA', 'LAO', 'KHM', 'MMR', 'VNM'))) {
   stop("Country unsupported", call.=FALSE)
 }
 
