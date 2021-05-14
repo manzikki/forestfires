@@ -1,3 +1,16 @@
+#This script creates CVS files from the allc.txt file that has been created by monthly analysis scripts
+#Then it creates the "this month each year" graph files.
+#uncomment the following section if you want this file to create allc.txt. It will take a few days.
+
+#rm -f allc.txt
+#for i in /var/www/html/data/20??-??.nc
+#do
+#  for c in THA LAO KHM MMR VNM SEA
+#  do
+#      Rscript month-simple-by-country.r $i $c >> allc.txt
+#  done
+#done
+
 #iterate over months
 for i in 01 02 03 04 05 06 07 08 09 10 11 12
 do
