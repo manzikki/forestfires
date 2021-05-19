@@ -60,13 +60,16 @@ for (aDay in (1:aNumDay)) {
   #print(aMaxP) #3.841185e-09
   #aMaxP = ifelse(aMaxP < 1,1,aMaxP)
   #these breaks should be hardcoded for consistency
-  PM25_breaks = seq(0,aMaxP,length.out=5)
+  #PM25_breaks = seq(0,aMaxP,length.out=5)
+
+  PM25_breaks = c(0.0, 5.0, 10.0, 15.0, 20.0, 25.0)
+  PM25_labels = PM25_breaks
 
   jpeg(paste0(aFileDate , "pm25.jpg"), width = 1442 , height = 1442 , res = 200)
   PM25_labels = scalef(PM25_breaks)
 
   draw_map_with_data("PM 2.5 from fires", expression(paste("PM 2.5 mg m"^"-2","s"^"-1")), 
-                      aMaxP, aPM25_D, PM25_breaks, PM25_labels, aPM25_D$PM25)
+                      25.0, aPM25_D, PM25_breaks, PM25_labels, aPM25_D$PM25)
 
 }
 
