@@ -1,31 +1,44 @@
-#This script creates CVS files from the allc.txt file that has been created by monthly analysis scripts
+#This script creates CVS files from the $tfile file that has been created by monthly analysis scripts
 #Then it creates the "this month each year" graph files.
-#uncomment the following section if you want this file to create allc.txt. It will take a few days.
+#uncomment the following section if you want this file to create $tfile. It will take a few days.
+tfile=allc.txt
 
-#rm -f allc.txt
-#for i in /var/www/html/data/20??-??.nc
+#rm -f $tfile
+#for i in ????-??.nc
 #do
 #  for c in THA LAO KHM MMR VNM SEA
 #  do
-#      Rscript month-simple-by-country.r $i $c >> allc.txt
+#      Rscript month-simple-by-country.r $i $c >> $tfile
 #  done
 #done
 
 #iterate over months
 for i in 01 02 03 04 05 06 07 08 09 10 11 12
 do
-  echo "Year, Value" > tha$i.csv
-  cat allc.txt | grep THA | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> tha$i.csv
-  echo "Year, Value" > lao$i.csv
-  cat allc.txt | grep LAO | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> lao$i.csv
-  echo "Year, Value" > khm$i.csv
-  cat allc.txt | grep KHM | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> khm$i.csv
-  echo "Year, Value" > mmr$i.csv
-  cat allc.txt | grep MMR | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> mmr$i.csv
-  echo "Year, Value" > vnm$i.csv
-  cat allc.txt | grep VNM | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> vnm$i.csv
-  echo "Year, Value" > sea$i.csv
-  cat allc.txt | grep SEA | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> sea$i.csv
+  echo "Year, Value" > tha$i.pm25.csv
+  cat $tfile | grep THA | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> tha$i.pm25.csv
+  echo "Year, Value" > lao$i.pm25.csv
+  cat $tfile | grep LAO | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> lao$i.pm25.csv
+  echo "Year, Value" > khm$i.pm25.csv
+  cat $tfile | grep KHM | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> khm$i.pm25.csv
+  echo "Year, Value" > mmr$i.pm25.csv
+  cat $tfile | grep MMR | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> mmr$i.pm25.csv
+  echo "Year, Value" > vnm$i.pm25.csv
+  cat $tfile | grep VNM | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> vnm$i.pm25.csv
+  echo "Year, Value" > sea$i.pm25.csv
+  cat $tfile | grep SEA | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> sea$i.pm25.csv
+  echo "Year, Value" > tha$i.frp.csv
+  cat $tfile | grep THA | grep FRP | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> tha$i.frp.csv
+  echo "Year, Value" > lao$i.frp.csv
+  cat $tfile | grep LAO | grep FRP | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> lao$i.frp.csv
+  echo "Year, Value" > khm$i.frp.csv
+  cat $tfile | grep KHM | grep FRP | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> khm$i.frp.csv
+  echo "Year, Value" > mmr$i.frp.csv
+  cat $tfile | grep MMR | grep FRP | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> mmr$i.frp.csv
+  echo "Year, Value" > vnm$i.frp.csv
+  cat $tfile | grep VNM | grep FRP | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> vnm$i.frp.csv
+  echo "Year, Value" > sea$i.frp.csv
+  cat $tfile | grep SEA | grep FRP | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> sea$i.frp.csv
   mname="Jan"
   if [ $i -eq 02 ]
   then
@@ -71,10 +84,17 @@ do
   then
       mname="Dec"
   fi
-  Rscript year_bar_charts.r tha$i.csv "Thailand $mname AVG PM2.5"
-  Rscript year_bar_charts.r lao$i.csv "Laos $mname AVG PM2.5"
-  Rscript year_bar_charts.r khm$i.csv "Cambodia $mname AVG PM2.5"
-  Rscript year_bar_charts.r mmr$i.csv "Myanmar $mname AVG PM2.5"
-  Rscript year_bar_charts.r vnm$i.csv "Vietnam $mname AVG PM2.5"
-  Rscript year_bar_charts.r sea$i.csv "Upper_SEA $mname AVG PM2.5"
+  Rscript year_bar_charts_pm25.r tha$i.pm25.csv "Thailand $mname PM2.5"
+  Rscript year_bar_charts_pm25.r lao$i.pm25.csv "Laos $mname PM2.5"
+  Rscript year_bar_charts_pm25.r khm$i.pm25.csv "Cambodia $mname PM2.5"
+  Rscript year_bar_charts_pm25.r mmr$i.pm25.csv "Myanmar $mname PM2.5"
+  Rscript year_bar_charts_pm25.r vnm$i.pm25.csv "Vietnam $mname PM2.5"
+  Rscript year_bar_charts_pm25.r sea$i.pm25.csv "Upper_SEA $mname PM2.5"
+
+  Rscript year_bar_charts_frp.r tha$i.frp.csv "Thailand $mname FRP"
+  Rscript year_bar_charts_frp.r lao$i.frp.csv "Laos $mname FRP"
+  Rscript year_bar_charts_frp.r khm$i.frp.csv "Cambodia $mname FRP"
+  Rscript year_bar_charts_frp.r mmr$i.frp.csv "Myanmar $mname FRP"
+  Rscript year_bar_charts_frp.r vnm$i.frp.csv "Vietnam $mname FRP"
+  Rscript year_bar_charts_frp.r sea$i.frp.csv "Upper_SEA $mname FRP"
 done
