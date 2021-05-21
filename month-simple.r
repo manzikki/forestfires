@@ -93,8 +93,8 @@ maxc  = max(current_sum)
 maxc = round(maxc)
 tmptext = paste("Average fire CO2 emissions per day:", meanc, "max:", maxc)
 print(tmptext)
-
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide", times_no),  ylab=ylabt,
+options(scipen=5)
+barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide", times_no),  ylim=c(0, 3000000), ylab=ylabt,
         sub=tmptext)
 
 # Load current emissions: CO
