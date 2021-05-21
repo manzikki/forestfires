@@ -141,9 +141,10 @@ meanc = mean(current_sum)
 meanc = round(meanc)
 maxc  = max(current_sum)
 maxc = round(maxc)
+
 tmptext = paste("Average fire PM2.5 emissions per day:", meanc, "max:", maxc)
-print(tmptext)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Particulate Matter PM2.5", times_no), ylab=ylabt,
+print(paste(times_no, tmptext))
+barplot(current_sum, names.arg=idx, ylim=c(0, 2000), main=paste("Wildfire flux of Particulate Matter PM2.5", times_no), ylab=ylabt,
         sub=tmptext)
 
 # Load current emissions: FRF
@@ -162,14 +163,19 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(times_no, "-frp.jpg", sep="")
 jpeg(fname)
+#scaling: use MW instead of W
+summillionth <- current_sum %/% 1000000
 meanc = mean(current_sum)
 meanc = round(meanc)
 maxc  = max(current_sum)
 maxc = round(maxc)
 tmptext = paste("Average FRP per day:", meanc, "max:", maxc)
-print(tmptext)
-barplot(current_sum, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab="FRP in W/m2",
-        sub=tmptext)
+dtext = paste(times_no, "Average FRP per day:", round(mean(summillionth)), "max:", max(summillionth))
+print(paste(times_no, tmptext))
+#print(debugtext)
+options(scipen=5)
+barplot(summillionth, names.arg=idx, main=paste("Fire Radiative Power", times_no), ylab="FRP in MW/m2",
+        sub=dtext, ylim=c(0, 1000000))
 
 
 # Load current emissions: co2

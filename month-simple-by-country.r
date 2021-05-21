@@ -181,12 +181,16 @@ current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
 fname = paste(aISO3, "-", times_no, "-frp.jpg", sep="")
 jpeg(fname)
+#test scaling
+summillionth <- current_sum / 1000000
 meanc = mean(current_sum)
 meanc = round(meanc)
 maxc  = max(current_sum)
 maxc = round(maxc)
 tmptext = paste(aISO3,"Average FRP per day:", meanc, "max:", maxc)
+debugtext = paste(times_no,aISO3,"Wanda:", round(mean(summillionth)))
 print(paste(times_no, tmptext))
+print(debugtext)
 barplot(current_sum, names.arg=idx, main=paste(aISO3, "Fire Radiative Power", times_no), ylab="FRP in W/m2",
         sub=tmptext)
 
