@@ -27,6 +27,7 @@ do
   cat $tfile | grep VNM | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> vnm$i.pm25.csv
   echo "Year, Value" > sea$i.pm25.csv
   cat $tfile | grep SEA | grep PM2.5 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> sea$i.pm25.csv
+
   echo "Year, Value" > tha$i.frp.csv
   cat $tfile | grep THA | grep FRP | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> tha$i.frp.csv
   echo "Year, Value" > lao$i.frp.csv
@@ -39,6 +40,20 @@ do
   cat $tfile | grep VNM | grep FRP | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> vnm$i.frp.csv
   echo "Year, Value" > sea$i.frp.csv
   cat $tfile | grep SEA | grep FRP | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> sea$i.frp.csv
+
+  echo "Year, Value" > tha$i.co2.csv
+  cat $tfile | grep THA | grep CO2 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> tha$i.co2.csv
+  echo "Year, Value" > lao$i.co2.csv
+  cat $tfile | grep LAO | grep CO2 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> lao$i.co2.csv
+  echo "Year, Value" > khm$i.co2.csv
+  cat $tfile | grep KHM | grep CO2 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> khm$i.co2.csv
+  echo "Year, Value" > mmr$i.co2.csv
+  cat $tfile | grep MMR | grep CO2 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> mmr$i.co2.csv
+  echo "Year, Value" > vnm$i.co2.csv
+  cat $tfile | grep VNM | grep CO2 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> vnm$i.co2.csv
+  echo "Year, Value" > sea$i.co2.csv
+  cat $tfile | grep SEA | grep CO2 | grep "\-$i" | sed 's/\[1\] "//' | sed 's/-.*day:/,/' | sed 's/ max.*//' >> sea$i.co2.csv
+
   mname="Jan"
   if [ $i -eq 02 ]
   then
@@ -97,4 +112,12 @@ do
   Rscript year_bar_charts_frp.r mmr$i.frp.csv "Myanmar $mname FRP"
   Rscript year_bar_charts_frp.r vnm$i.frp.csv "Vietnam $mname FRP"
   Rscript year_bar_charts_frp.r sea$i.frp.csv "Upper_SEA $mname FRP"
+
+  Rscript year_bar_charts_co2.r tha$i.co2.csv "Thailand $mname CO2"
+  Rscript year_bar_charts_co2.r lao$i.co2.csv "Laos $mname CO2"
+  Rscript year_bar_charts_co2.r khm$i.co2.csv "Cambodia $mname CO2"
+  Rscript year_bar_charts_co2.r mmr$i.co2.csv "Myanmar $mname CO2"
+  Rscript year_bar_charts_co2.r vnm$i.co2.csv "Vietnam $mname CO2"
+  Rscript year_bar_charts_co2.r sea$i.co2.csv "Upper_SEA $mname CO2"
+
 done
