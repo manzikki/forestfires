@@ -136,8 +136,10 @@ for (aDay in (1:aNumDay)) {
   if (aMaxF > 6) { FRP_breaks = seq(0,aMaxF,1) }
   aMaxF = ifelse(aMaxF < 1,1,aMaxF)
   #print(FRP_breaks)
+  #force uniform scale
+  FRP_breaks = c(0, 1, 2, 3, 4)
   jpeg(paste0(aFileDate , "frp.jpg"), width = 1442 , height = 1442 , res = 200)
-  draw_map_with_data("FRP in Upper SEA", "FRP (W/m2)", aMaxF, aFRP_D, FRP_breaks, FRP_breaks, aFRP_D$FRP)
+  draw_map_with_data("FRP in Upper SEA", "FRP (W/m2)", 4.0, aFRP_D, FRP_breaks, FRP_breaks, aFRP_D$FRP)
 
   aMaxP = max(aPM25_D$PM25, na.rm = TRUE)
   #print("Max PM2.5")
@@ -157,11 +159,13 @@ for (aDay in (1:aNumDay)) {
   #print("Max CO2")
   #print(aMaxC) #3.841185e-09
   #aMaxC = ifelse(aMaxC < 1,1,aMaxC)
-  CO2_breaks = seq(0,aMaxC,length.out=10)
-  CO2_labels = scalef(CO2_breaks)
-
+  #CO2_breaks = seq(0,aMaxC,length.out=10)
+  #CO2_labels = scalef(CO2_breaks)
+  #force scaling
+  CO2_breaks = c(0,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000)
+  CO2_labels = CO2_breaks
   jpeg(paste0(aFileDate , "co2.jpg"), width = 1442 , height = 1442 , res = 200)
-  draw_map_with_data("Fire CO2 in Upper SEA", expression(paste("CO2 mg m"^"-2","s"^"-1")), aMaxC, aCO2_D, CO2_breaks, CO2_labels, aCO2_D$CO2)
+  draw_map_with_data("Fire CO2 in Upper SEA", expression(paste("CO2 mg m"^"-2","s"^"-1")), 10000, aCO2_D, CO2_breaks, CO2_labels, aCO2_D$CO2)
 
 }
 
