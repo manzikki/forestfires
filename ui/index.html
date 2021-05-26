@@ -16,8 +16,67 @@
    <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
+<script>
 
-    <body>
+function file_exists(urlToFile) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+     
+    if (xhr.status == "404") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function getmatchfile() {
+//finds what kind of date matches the most recent file
+  var mdate = new Date();
+  days_back = 0;
+  origdatestr = ""; //return this if there are no matching files
+  while (1) {
+    mdate.setDate(mdate.getDate() - 1);
+    mon = mdate.getMonth()+1;
+    monstr = mon.toString();
+    day = mdate.getDate();
+    daystr = mdate.getDate().toString();
+    if (day < 10) { daystr = "0"+daystr; }
+    if (mon < 10) { monstr = "0"+monstr; }
+    year = mdate.getYear()+1900;
+    year = year.toString();
+    datestr = year+"-"+monstr+"-"+daystr;
+    if (days_back == 1) { origdatestr = datestr; }
+    if (file_exists("http://wildlandfire.thairen.net.th/wfsru/"+datestr+"pm25.jpg")) {
+        //alert(datestr+" ok");
+        return "http://wildlandfire.thairen.net.th/wfsru/"+datestr+"pm25.jpg";
+    } else { //alert(datestr+" not ok"); 
+    }
+    days_back = days_back + 1;
+    if (days_back > 10) {
+        //get out
+        return "";
+    }
+  }
+}
+
+function putpm25images() {
+   myfile = getmatchfile();
+   //alert(myfile);
+   document.getElementById('mypm25').src = myfile;
+   //get today's month
+   var mdate = new Date();
+   mon = mdate.getMonth()+1;
+   mfname = "http://wildlandfire.thairen.net.th/month-graphs/sea"+mon+".pm25.csv.jpg";
+   if (mon < 10) {
+       mfname = "http://wildlandfire.thairen.net.th/month-graphs/sea0"+mon+".pm25.csv.jpg";
+   }
+   document.getElementById('mypm25m').src = mfname;
+}
+
+
+</script>
+    <body onload="putpm25images()">
     <br> <br> 
         
         <div class="row">
@@ -32,12 +91,8 @@
            <a href="Contactus.html"> <h2> Contact Us</h2> </a> 
           </div>
             
-            <div class="col-4">
-            
-            </div>
-            
             <div class="col-3">
-                <h1> <u><b>Fire Emission</b> </u> </h1>
+                <h1> <u><b>Fire Emissions</b> </u> </h1>
                 <h1> <u><b> In Upper SEA </b></u></h1>
             </div>
         </div>
@@ -56,26 +111,28 @@
                      <a href="external.html"> <h6> Information sources</h6> </a>
                 <a href="https://sites.google.com/view/forestfirenews"><h6> More about forestfires</h6> </a>
                     <a href=" https://sites.google.com/view/forestfirenews/%E0%B9%84%E0%B8%97%E0%B8%A2 "><h6> Visit the Thai Page: ไทย</h6> </a>
-  </div>
+            </div>
             </div>
             
+
              <div class="col-3">
-                <h4> A case study of PM2.5,<br> December 2020 </h4>
-           <img src="dec20PM.gif" width=75%> 
+                <h4> Latest PM2.5</h4>
+               <img id="mypm25" src="dec20PM.gif" width="380">
             </div>
+
             <div class="col-3">
-                <h4> A case study of FRP, <br> December 2020 </h4>
-           <img src="dec20FRP.gif" width=75%> 
+                <h4> PM 2.5 in this month </h4>
+               <img id="mypm25m" src="dec20FRP.gif" width="380"> 
             </div>
             
-            <div class="col-3">
-                <h4> A case study of C02, <br> December 2020</h4>
-            <img src="dec20CO2.gif" width=75%> 
-            </div>
         </div>
         <br> <br> <br> 
-         <div class="notice"> <p>*This is a collaboration among <a href="https://wildfire.forest.go.th/" >Royal Forest Department, </a><p>  
-             <a href="https://www.uni.net.th/">Office of Information Technology Administration</a> <p> for Educational Development (UniNet),<p><a href="http://frc.forest.ku.ac.th/sru/indexen.php"> Upper ASEAN Wildland Fire Special Research Unit, </a><p> Forestry Research Center, Faculty of Forestry,<p> Kasetsart University and Webster University Thailand. </p> </div> 
+         <div> <p style="color:white; margin-left:10%; margin-right:10%;">Wildlandfire.thairen.net.th is a collaboration among
+             <a href="https://wildfire.forest.go.th/">Royal Forest Department</a>,
+             <a href="https://www.uni.net.th/">Office of Information Technology Administration</a>
+             for Educational Development (UniNet),
+             <a href="http://frc.forest.ku.ac.th/sru/indexen.php"> Upper ASEAN Wildland Fire Special Research Unit</a>,
+             Forestry Research Center, Faculty of Forestrym Kasetsart University and Webster University Thailand. </p> </div> 
         <br> 
         <div class= "footer">
     <p> &copy; Copyright 2020-2021 Webpage Development: Veerachai Tanpipat, Praphatsorn Punsompong, Marko Niinimaki, Prashanti Pokharel, Pragati Kharel, Sinjan Pokharel </p>
