@@ -20,6 +20,14 @@ if (length(args) < 1) {
 
 woffile = args[1]
 
+#open the file to read the time dimension for the first day
+ncin <- nc_open(woffile)
+time <- ncvar_get(ncin,'time')
+times <- convertDateNcdf2R(time, units = "hours", origin = as.POSIXct("1900-01-01",  tz = "UTC"))
+times_no <- str_replace(times[1], "UTC", "")
+#print(times_no) 2020-08-01
+times_no <- str_replace(times_no, "-01", "")
+#print(times_no) 2020-08
 
 thai <- raster::getData(name = "GADM", country = "Thailand", level = 0)
 laos <- raster::getData(name = "GADM", country = "Laos", level = 0)
@@ -27,6 +35,7 @@ viet <- raster::getData(name = "GADM", country = "Vietnam", level = 0)
 myan <- raster::getData(name = "GADM", country = "Myanmar", level = 0)
 camb <- raster::getData(name = "GADM", country = "Cambodia", level = 0)
 
+ylabt <- expression(paste("Tonnes per day per m"^"2"))
 
 country <- bind(thai, laos, viet, myan, camb)
 
