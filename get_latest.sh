@@ -15,6 +15,7 @@ co2ofile=$year-$month-${day}co2.nc
 if [ -f $frpofile ]
 then
     echo file $frpofile exists
+    exit 1
 else
     curl ftp://dissemination.ecmwf.int/DATA/CAMS_GFAS/$lastdate/$frpf -u$user:$pw --output $frpofile
     curl ftp://dissemination.ecmwf.int/DATA/CAMS_GFAS/$lastdate/$pm25f -u$user:$pw --output $pm25ofile
