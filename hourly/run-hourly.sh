@@ -68,3 +68,13 @@ cd c
 Rscript month-barchart-co2.r $recenty-$recentm.nc
 cd $curdir
 
+#is today the first day of the month?
+thisday=`date +%d`
+if [ $thisday -eq 1 ]
+then
+    echo Run last months script
+fi
+
+#finally: delete the old maps to avoid clutter
+find -type f -name "*.jpg" -mtime 2 -exec rm {} \;
+

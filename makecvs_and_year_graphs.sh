@@ -8,7 +8,8 @@ tfile=allc.txt
 #do
 #  for c in THA LAO KHM MMR VNM SEA
 #  do
-#      Rscript month-simple-by-country.r $i $c >> $tfile
+#      Rscript month-simple-by-country.r $i $c > $i-$c.txt
+#      cat $i-$c.txt >> $tfile
 #  done
 #done
 
