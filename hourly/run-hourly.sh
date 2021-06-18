@@ -61,7 +61,7 @@ Rscript month-barchart-frp.r $recenty-$recentm.nc
 cd $curdir
 
 cd p
-Rscript month-barchart-pm25.r $recenty-$recentm.nc
+Rscript month-barchart-pm25.r $recenty-$recentm.nc > $recenty-$recentm-SEA-pm25.txt
 cd $curdir
 
 cd c
@@ -72,7 +72,10 @@ cd $curdir
 thisday=`date +%d`
 if [ $thisday -eq 1 ]
 then
-    echo Run last months script
+    echo Running a script to create a barachart of the last 12 months
+    cd p
+    bash ../12-month-barchart-pm25.sh $recenty $recentm
+    cd $curdir
 fi
 
 #finally: delete the old maps to avoid clutter
