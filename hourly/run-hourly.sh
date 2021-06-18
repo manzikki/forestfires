@@ -75,6 +75,7 @@ then
     echo Running a script to create a barachart of the last 12 months
     cd p
     bash ../12-month-barchart-pm25.sh $recenty $recentm
+    Rscript ../12-month-barchart-pm25.r twelwe.csv "Fire related PM2.5, last 12 months"
     cd $curdir
 fi
 
