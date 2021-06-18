@@ -9,7 +9,7 @@ lastyear=$(( $year -1 ))
 #echo $lastyear
 #iterate
 m=$month
-echo "Month,AVG" > twelwe.csv
+echo "Month,AVG" > twelve.csv
 while [ $m -lt 13 ]
 do
     pm=$lastyear-${m}-SEA
@@ -17,7 +17,7 @@ do
     then
         pm=$lastyear-0${m}-SEA
     fi
-    cat $pm*txt | sed 's/\[1\] "//' | sed 's/ Average fire PM2.5 emissions per day: /,/' | sed 's/ .*//' >> twelwe.csv
+    cat $pm*txt | sed 's/\[1\] "//' | sed 's/ Average fire PM2.5 emissions per day: /,/' | sed 's/ .*//' >> twelve.csv
     ((m++))
 done
 m=1
@@ -28,6 +28,6 @@ do
     then
         pm=$year-0${m}-SEA
     fi
-    cat $pm*txt | sed 's/\[1\] "//' | sed 's/ Average fire PM2.5 emissions per day: /,/' | sed 's/ .*//' >> twelwe.csv
+    cat $pm*txt | sed 's/\[1\] "//' | sed 's/ Average fire PM2.5 emissions per day: /,/' | sed 's/ .*//' >> twelve.csv
     ((m++))
 done
