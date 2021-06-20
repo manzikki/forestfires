@@ -1,6 +1,11 @@
 user=$1
 pw=$2
 lastdate=`curl ftp://dissemination.ecmwf.int -Q "CWD DATA/CAMS_GFAS" -u$user:$pw | tail -1 | sed 's/.* //'`
+if [ -z $lastdate ]
+then
+    echo Curl failed
+    exit 1
+fi
 curl ftp://dissemination.ecmwf.int -Q "CWD DATA/CAMS_GFAS/$lastdate" -u$user:$pw > latest.files
 frpf=`grep frpfire.nc latest.files | sed 's/.* //'`
 pm25f=`grep pm2p5fire.nc latest.files | sed 's/.* //'`
