@@ -57,7 +57,7 @@ cp month-barchart-co2.r gfas_0001_cfire_climatology_2003_2018.nc c
 
 curdir=`pwd`
 cd f
-Rscript month-barchart-frp.r $recenty-$recentm.nc
+Rscript month-barchart-frp.r $recenty-$recentm.nc  > $recenty-$recentm-SEA-frp.txt
 cd $curdir
 
 cd p
@@ -65,7 +65,7 @@ Rscript month-barchart-pm25.r $recenty-$recentm.nc > $recenty-$recentm-SEA-pm25.
 cd $curdir
 
 cd c
-Rscript month-barchart-co2.r $recenty-$recentm.nc
+Rscript month-barchart-co2.r $recenty-$recentm.nc  > $recenty-$recentm-SEA-co2.txt
 cd $curdir
 
 #is today the first day of the month?
@@ -75,7 +75,7 @@ then
     echo Running a script to create a barachart of the last 12 months
     cd p
     bash ../12-month-barchart-pm25.sh $recenty $recentm
-    Rscript ../12-month-barchart-pm25.r twelwe.csv "Fire related PM2.5, last 12 months"
+    Rscript ../12-month-barchart-pm25.r twelve.csv "Fire related PM2.5, last 12 months"
     cd $curdir
 fi
 
