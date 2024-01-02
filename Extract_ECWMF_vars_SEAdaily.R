@@ -1,3 +1,7 @@
+#To install R, please see here: https://cran.r-project.org. You do not need to install R studio (the GUI package), just R.
+#To install the required packages:
+#R
+#install.packages(c('ncdf4','raster','ggplot2'))
 #By Dr. Praphatsorn Punsompong 2020.
 #Small adjustments by Marko Niinimaki.
 #This program gets a NetCFD file from the command line and creates maps of upper SEA for each of the
@@ -72,7 +76,7 @@ draw_map_with_data <- function(title, unit, maxlim, daydata, breaks, labels, col
 
 library(ncdf4) 
 library(raster) 
-library(rgdal) 
+#library(rgdal) 
 library(ggplot2) 
 library(stringr)
 

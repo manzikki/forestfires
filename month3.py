@@ -1,4 +1,6 @@
 #This script downloads last month's forest fire variables' data.
+#BEFORE YOU RUN, INSTALL:
+#pip3 install cdsapi
 #Output: month.nc like 2020-01.nc
 #Optional parameters: month year <- will download this
 #Marko Niinimaki 2023
@@ -6,7 +8,6 @@
 from datetime import datetime
 from calendar import monthrange
 import cdsapi
-#from ecmwfapi import ECMWFDataServer
 import sys
 
 def last_day_of_month(date_value):
