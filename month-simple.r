@@ -35,7 +35,7 @@ gfas_data_mean <- brick("gfas_0001_cfire_climatology_2003_2018.nc",
                         varname = "gfas_data_mean")
 
 # Load current emissions: Wildfire Overall flux
-current_emissions <- brick(woffile, varname="cfire")
+current_emissions <- brick(woffile, varname="tcfire")
 labels_current <- substr(names(current_emissions), 7, 11)
 aoi <- as(extent(gfas_data_mean), "SpatialPolygons")
 current_area <- raster::area(current_emissions) * 1000000 # in m2
@@ -98,28 +98,28 @@ barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Dioxide"
         sub=tmptext)
 
 # Load current emissions: CO
-current_emissions <- brick(woffile, varname="cofire")
-labels_current <- substr(names(current_emissions), 7, 11)
-aoi <- as(extent(gfas_data_mean), "SpatialPolygons")
-current_area <- raster::area(current_emissions) * 1000000 # in m2
-current <- raster::mask(current_emissions * current_area, aoi)
-current <- mask(current, country)
+#current_emissions <- brick(woffile, varname="cofire")
+#labels_current <- substr(names(current_emissions), 7, 11)
+#aoi <- as(extent(gfas_data_mean), "SpatialPolygons")
+#current_area <- raster::area(current_emissions) * 1000000 # in m2
+#current <- raster::mask(current_emissions * current_area, aoi)
+#current <- mask(current, country)
 
 # Find indices in common
-idx <- labels_current
+#idx <- labels_current
 
 # Compute sum over the area
-current_sum <- cellStats(current, sum) * 86400 * 1E-3
+#current_sum <- cellStats(current, sum) * 86400 * 1E-3
 
-fname = paste(times_no, "-co.jpg", sep="")
-jpeg(fname)
-meanc = mean(current_sum)
-meanc = round(meanc)
-maxc  = max(current_sum)
-maxc = round(maxc)
-tmptext = paste("Average fire carbon emissions per day:", meanc, "max:", maxc)
-barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Monoxide", times_no),  ylab=ylabt,
-        sub=tmptext)
+#fname = paste(times_no, "-co.jpg", sep="")
+#jpeg(fname)
+#meanc = mean(current_sum)
+#meanc = round(meanc)
+#maxc  = max(current_sum)
+#maxc = round(maxc)
+#tmptext = paste("Average fire carbon emissions per day:", meanc, "max:", maxc)
+#barplot(current_sum, names.arg=idx, main=paste("Wildfire flux of Carbon Monoxide", times_no),  ylab=ylabt,
+#        sub=tmptext)
 
 # Load current emissions: PM2.5
 current_emissions <- brick(woffile, varname="pm2p5fire")

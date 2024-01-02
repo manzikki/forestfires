@@ -43,7 +43,7 @@ c.retrieve(
     {
     "date": dstr,
     "format": "netcdf",
-    'variable': [ 'wildfire_flux_of_carbon_dioxide', 'wildfire_flux_of_particulate_matter_d_2_5_µm', 'wildfire_radiative_power' ]
+    'variable': [ 'wildfire_flux_of_total_carbon_in_aerosols', 'wildfire_flux_of_carbon_dioxide', 'wildfire_flux_of_particulate_matter_d_2_5_µm', 'wildfire_radiative_power' ]
     },
     str(year)+"-"+monthstr+".nc")
 #dstr+".nc")
