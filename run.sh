@@ -10,7 +10,7 @@ year=`date +"%Y"`
 month=`date +"%m"`
 
 #get this month's nc file
-python3 month3.py $month $year
+python3 month3.py THIS
 
 if [ -f $year-$month.nc ]
 then
