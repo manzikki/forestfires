@@ -1,8 +1,6 @@
 # forestfires
 Daily production of forest fire related data.
 
-# Quick start: see the Dockerfile in "hourly". Run it hourly.
-
 1. Getting the data 
 
 The Python scripts day3.py and month3.py produce the NetCDF files needed for visualizations. Following steps needed:
