@@ -1,8 +1,11 @@
-#This script downloads last month's forest fire variables' data.
+#This script downloads last month's forest fire variables' data or the data from the designated month like this:
+#python3 month3.py #By default get all of the previous month's data
+#python3 month3.py 01 2023 #Specfic month
+#python3 month3.py THIS #Tries to get the current month's data
 #BEFORE YOU RUN, INSTALL:
 #pip3 install cdsapi
-#Output: month.nc like 2020-01.nc
-#Optional parameters: month year <- will download this
+#Output: year-month.nc like 2020-01.nc
+#Variables: see https://ads.atmosphere.copernicus.eu/cdsapp#!/dataset/cams-global-fire-emissions-gfas?tab=form
 #Marko Niinimaki 2023
 #!/usr/bin/env python
 from datetime import datetime
@@ -27,6 +30,22 @@ if len(sys.argv) == 3:
 
 mdate = datetime(year=year, month=lastmonth, day=1).date()
 lastday = last_day_of_month(mdate)
+
+#if lastmonth is "THIS", try to get this month's data but modify the date string
+#note: you cannot run this during the 2 first days of the month
+if len(sys.argv) == 2 and sys.argv[1] == "THIS":
+    year = datetime.now().year
+    lastmonth = datetime.now().month
+    lastday = datetime.now().day - 2
+    padm = ""
+    padd = ""
+    if lastmonth < 10:
+        padm = "0"
+    if lastday < 10:
+        padd = "0"
+    if lastday < 1:
+        quit()
+    lastday = str(year)+'-'+padm+str(lastmonth)+'-'+padd+str(lastday)    
 
 monthstr = str(lastmonth)
 if lastmonth < 10:
