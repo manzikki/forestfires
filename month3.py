@@ -13,6 +13,8 @@ from calendar import monthrange
 import cdsapi
 import sys
 
+#the day range parameter for the download is e.g 2020-01-01/2020-01-31
+
 def last_day_of_month(date_value):
     return date_value.replace(day = monthrange(date_value.year, date_value.month)[1])
 
