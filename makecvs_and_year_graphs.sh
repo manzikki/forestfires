@@ -1,17 +1,29 @@
 #This script creates CVS files from the $tfile file that has been created by monthly analysis scripts
 #Then it creates the "this month each year" graph files.
-#uncomment the following section if you want this file to create $tfile. It will take a few days.
+#Use -f if you want this file to create $tfile. It will take a few days.
+
 tfile=allc.txt
 
-#rm -f $tfile
-#for i in ????-??.nc
-#do
-#  for c in THA LAO KHM MMR VNM SEA
-#  do
-#      Rscript month-simple-by-country.r $i $c > $i-$c.txt
-#      cat $i-$c.txt >> $tfile
-#  done
-#done
+if [ "$#" -eq 1 ]
+then
+    #we want to generate all the stuff
+    mkdir tmp
+    cp gfas_0001_cfire_climatology_2003_2018.nc month-simple-by-country.r tmp
+    cd tmp
+    ln -s /var/www/html/data/????-??.nc .
+    rm -f $tfile
+    for i in ????-??.nc
+    do
+        for c in THA LAO KHM MMR VNM SEA
+        do
+            Rscript month-simple-by-country.r $i $c > $i-$c.txt
+            cat $i-$c.txt >> $tfile
+        done
+    done
+    cp $tfile ..
+    cd ..
+fi
+
 
 #iterate over months
 for i in 01 02 03 04 05 06 07 08 09 10 11 12
