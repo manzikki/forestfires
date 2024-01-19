@@ -1,29 +1,38 @@
-#This script creates CVS files from the $tfile file that has been created by monthly analysis scripts
+#This script generates an up to date allc.txt file by running a month-simple-by-country.r over countries in the
+#SEA region and appending the numeric results of the month files to allc.txt
+#This script creates CVS files from the allc.txt file that has been created by monthly analysis scripts
 #Then it creates the "this month each year" graph files.
-#Use -f if you want this file to create $tfile. It will take a few days.
 
 tfile=allc.txt
 
-if [ "$#" -eq 1 ]
-then
-    #we want to generate all the stuff
-    mkdir tmp
-    cp gfas_0001_cfire_climatology_2003_2018.nc month-simple-by-country.r tmp
-    cd tmp
-    ln -s /var/www/html/data/????-??.nc .
-    rm -f $tfile
-    for i in ????-??.nc
+#do the allc.txt generation in tmp
+mkdir tmp
+cp gfas_0001_cfire_climatology_2003_2018.nc month-simple-by-country.r  12-month-barchart-pm25.* tmp
+cd tmp
+#link data files
+ln -s /var/www/html/data/????-??.nc .
+rm -f $tfile
+#delete the txt files of the most recent nc file so that we regenerate it
+lastnc=`ls ????-??.nc | tail -1`
+rm $lastnc.txt 
+for i in ????-??.nc
+do
+    for c in THA LAO KHM MMR VNM SEA
     do
-        for c in THA LAO KHM MMR VNM SEA
-        do
-            Rscript month-simple-by-country.r $i $c > $i-$c.txt
-            cat $i-$c.txt >> $tfile
-        done
+         if test -f $i-$c.txt
+         then
+             echo $i-$c.txt already exists
+             cat $i-$c.txt >> $tfile
+         else
+             Rscript month-simple-by-country.r $i $c > $i-$c.txt
+             cat $i-$c.txt >> $tfile
+         fi
     done
-    cp $tfile ..
-    cd ..
-fi
-
+done
+bash 12-month-barchart-pm25.sh
+cp SEA-pm25-12m.jpg ..
+cp $tfile ..
+cd ..
 
 #iterate over months
 for i in 01 02 03 04 05 06 07 08 09 10 11 12

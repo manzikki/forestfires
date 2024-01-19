@@ -4,11 +4,16 @@
 #Month,AVG
 #2020-12,40
 #over the last 12 months
-if [ "$#" -ne 2 ]; then
-    echo "Parameters required: year month"
-fi
+#How to call this script:
+#If no parameters, will use 12 months back from the current month
+#or 12-month-barchart-pm25.sh 2021 12
 year=$1
 month=$2
+if [ "$#" -eq 0 ]
+then
+    year=`date +%Y`
+    month=`date +%m`
+fi
 month=`echo $month | sed 's/^0//'`
 lastyear=$(( $year -1 ))
 #echo $lastyear
@@ -36,3 +41,5 @@ do
     cat $pm*txt | grep PM | sed 's/\[1\] "//' | sed 's/ SEA Average fire PM2.5 emissions per day: /,/' | sed 's/ .*//' >> twelve.csv
     ((m++))
 done
+#call the script
+Rscript 12-month-barchart-pm25.r twelve.csv "Fire related PM2.5 last 12 months"
