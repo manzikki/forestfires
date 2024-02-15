@@ -2,6 +2,8 @@
 # Based on ECMWF examples, tuning by Marko Niinimaki marko.n@chula.ac.th 2024
 # Use parameter: an netcdf file containing one day of data, variable pm2p5fire
 # install.packages(c("raster"))
+# pm2p5fire unit is "kg m**-2 s**-1"
+
 
 library("raster")
 #library("ncdf4")
@@ -28,7 +30,7 @@ chiangmai_em = crop(current_emissions, chiangmai)
 current <- raster::area(chiangmai_em) # * 1000000 # in m2
 
 # Compute mean over the area
-current_mean <- cellStats(current, mean) * 86400 * 1E-3
+current_mean <- cellStats(current, mean) * 86400 * 1E-3 #86400 seconds in a day
 print(current_mean)
 
 #current <- raster::mask(current_emissions * current_area, chiangmai)
