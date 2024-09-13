@@ -53,3 +53,6 @@ else
     #Rscript Extract_ECWMF_PM25_SEA_countries_daily.R $lastfile.nc MMR
 fi
 chmod +x *.jpg
+#run the 12 last month and month AVG graph generation
+bash makecvs_and_year_graphs.sh
+
