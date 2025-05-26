@@ -2,7 +2,7 @@ import subprocess
 from datetime import datetime, timedelta
 import os.path
 
-start_date = datetime(2000, 1, 1)
+start_date = datetime(2003, 1, 1)
 end_date = datetime.today()
 
 current_date = start_date
