@@ -1,2 +1,21 @@
-Experimental scripts for studying connections between weather and forest fires
+Experimental scripts for studying connections between weather and forest fires.
+download_era5.py - get weather data for Ching Mai of the day given as a parameter
+download_gfas.py - get fire data for Ching Mai of the day given as a parameter
+
+get_all_weather.py - get weather data for all days 1.1.2003 - today
+get_all_fire.py - get fire data for all days 1.1.2003 - today
+
+rename-weather-ncfiles.py - run this after getting the data
+
+tmp_weathervals.py - print weather data from 1 nc file
+tmp_firevals.py - print fire data from 1 nc file
+
+print_firevals.py - print data from a directory in this form:
+time,co2fire,frpfire,pm2p5fire,tcfire
+2003-01-02 00:00:00,1.959296475062544e-10,0.00015056715346872807,6.521915711481252e-13,4.771619839701036e-13
+2003-01-03 00:00:00,2.75173689390229e-10,0.0002122034493368119,9.035635737883463e-13,6.628151261352244e-13
+
+print_weathervals.py TBD
+
+
 
