@@ -24,7 +24,8 @@ def compute_averages(nc_file):
 
     for i, t in enumerate(times_pd):
         if t.hour == 12 and t.minute == 0 and t.second == 0:
-            row = [str(times[i].values)]
+            #row = [str(times[i].values)]
+            row = [str(times[i].values).split("T")[0]]
             for var in vars_to_avg:
                 if var in ds:
                     data = ds[var].isel({time_dim: i})
